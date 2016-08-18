@@ -1,0 +1,527 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD14\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">18/08/2016</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">6:54:39 p.m.</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc" class="file"><acronym title="G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc">G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">45</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="IDBSCT3BWLZBHQGJFUEXGW1B5IFDFOQE3CNZXL32NBIMTHUDL11WRE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHL2PABQLS1MDUI0LDCNM1T23U1SLDNRGJ2FRDF0X0H1VCLJXEO">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5U0515ZDVXIYNVZT2NHYUB1QOCVLCHRENXQVCPGTPNTVG5JE0LYC">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3EQKUOSV32AGDMRTH3CRRLAXAFCCVIFQ0SGJYQBK2C0LHFU02XJ">Clearance Constraint (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIICNK2M1NGHOM3NTXIDMILJ2MXH2AOA0U3SYHE1OTF0J23JFBBC">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBDBZ24OBSUIJNLH3RVKDMOWELHSH5THRW3A4SZPFESGMSEB0ZD1J">Width Constraint (Min=0.4mm) (Max=10mm) (Preferred=1mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGE0XXFVEYF0VDCEJ2H1NIOL4MMNSWARWUSCOWSCJ520QSIDIYQAF">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1N0NFYFYK4PQHCRP13FRNHKLTGPX45RHWO2ZV1JKBLRGVOCUUWNB">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDF2FWHOEDYGQ3IJ4GKEIWTNW45PYKZC3CJUJIJ5CTOIE55Z4B55NG">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPRUGOFBB1DHZKTK1FIYIGKONCMVUDGSXX1AS3K2KZS3PPCXEVZE">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFRHWXSKFOAEBILCQLKPGE1UJOHNPG01SJ1O0DJJ4HJT4IG0CFEAE">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">38</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVLCYBPCII0VHNTO2UFQJGD4A1BQOT2KMGSH5OKHTPRKML4U4BFJH">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSTTEKMPVWQAOERKCCLEACBYLCGMFJOYUK3KIYXCBLE2AJD43SGNC">Silk primitive without silk layer</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNS1EZIHZRKSWJAEMR5LLUNLVWH3GTCU2IFTXWUEWLKL4UYVDPSGD">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJZA4TUM0MJHACO5SDD33DZK0GLCXK3AB0XEOTAIWVHPVD555JKZK">Rule</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">45</td>
+</tr>
+</table><br><hr><a name="ID1N0NFYFYK4PQHCRP13FRNHKLTGPX45RHWO2ZV1JKBLRGVOCUUWNB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.375mil|Location2.X=2760.625mil|Location1.Y=3079.375mil|Location2.Y=3330.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.375mil|Location2.X=2760.625mil|Location1.Y=3079.375mil|Location2.Y=3330.625mil|Absolute=True">Hole Size Constraint (6.35mm &gt; 2.54mm) : Pad P1-1(66.929mm,81.407mm)  Multi-Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.375mil|Location2.X=2760.625mil|Location1.Y=2179.375mil|Location2.Y=2430.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2509.375mil|Location2.X=2760.625mil|Location1.Y=2179.375mil|Location2.Y=2430.625mil|Absolute=True">Hole Size Constraint (6.35mm &gt; 2.54mm) : Pad P1-2(66.929mm,58.547mm)  Multi-Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.875mil|Location2.X=1773.125mil|Location1.Y=2821.875mil|Location2.Y=2948.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.875mil|Location2.X=1773.125mil|Location1.Y=2821.875mil|Location2.Y=2948.125mil|Absolute=True">Hole Size Constraint (3.175mm &gt; 2.54mm) : Pad J1-1(43.434mm,73.279mm)  Multi-Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.781mil|Location2.X=1519.031mil|Location1.Y=2831.875mil|Location2.Y=2938.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.781mil|Location2.X=1519.031mil|Location1.Y=2831.875mil|Location2.Y=2938.125mil|Absolute=True">Hole Size Constraint (2.667mm &gt; 2.54mm) : Pad J1-3(37.234mm,73.279mm)  Multi-Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1534.827mil|Location2.X=1641.077mil|Location1.Y=2635.025mil|Location2.Y=2741.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1534.827mil|Location2.X=1641.077mil|Location1.Y=2635.025mil|Location2.Y=2741.275mil|Absolute=True">Hole Size Constraint (2.667mm &gt; 2.54mm) : Pad J1-2(40.334mm,68.279mm)  Multi-Layer</acronym></a><br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDFRHWXSKFOAEBILCQLKPGE1UJOHNPG01SJ1O0DJJ4HJT4IG0CFEAE"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.504mil|Location2.X=4250.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.504mil|Location2.X=4250.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-1(107.061mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4279.504mil|Location2.X=4350.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4279.504mil|Location2.X=4350.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-2(109.601mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.504mil|Location2.X=4450.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.504mil|Location2.X=4450.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-3(112.141mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4479.504mil|Location2.X=4550.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4479.504mil|Location2.X=4550.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-4(114.681mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.504mil|Location2.X=4650.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.504mil|Location2.X=4650.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-5(117.221mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.504mil|Location2.X=4750.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.504mil|Location2.X=4750.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-6(119.761mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2476.732mil|Location2.Y=2484.606mil|Absolute=True">Track (104.581mm,63.009mm)(124.781mm,63.009mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.504mil|Location2.X=4850.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.504mil|Location2.X=4850.496mil|Location1.Y=2389.661mil|Location2.Y=2480.339mil|Absolute=True">Pad U1-7(122.301mm,61.849mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.504mil|Location2.X=4250.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.504mil|Location2.X=4250.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-14(107.061mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4279.504mil|Location2.X=4350.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4279.504mil|Location2.X=4350.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-13(109.601mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.504mil|Location2.X=4450.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4379.504mil|Location2.X=4450.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-12(112.141mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4479.504mil|Location2.X=4550.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4479.504mil|Location2.X=4550.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-11(114.681mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.504mil|Location2.X=4650.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4579.504mil|Location2.X=4650.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-10(117.221mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.504mil|Location2.X=4750.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.504mil|Location2.X=4750.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-9(119.761mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4113.425mil|Location2.X=4916.575mil|Location1.Y=2685.394mil|Location2.Y=2693.268mil|Absolute=True">Track (104.581mm,68.309mm)(124.781mm,68.309mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.504mil|Location2.X=4850.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4779.504mil|Location2.X=4850.496mil|Location1.Y=2689.661mil|Location2.Y=2780.339mil|Absolute=True">Pad U1-8(122.301mm,69.469mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2621.063mil|Location2.X=2628.937mil|Location1.Y=1651.063mil|Location2.Y=1698.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2621.063mil|Location2.X=2628.937mil|Location1.Y=1651.063mil|Location2.Y=1698.937mil|Absolute=True">Track (66.675mm,42.037mm)(66.675mm,43.053mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591mil|Location2.X=2659mil|Location1.Y=1701mil|Location2.Y=1769mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591mil|Location2.X=2659mil|Location1.Y=1701mil|Location2.Y=1769mil|Absolute=True">Pad R7-2(66.675mm,44.069mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2621.063mil|Location2.X=2628.937mil|Location1.Y=1371.063mil|Location2.Y=1418.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2621.063mil|Location2.X=2628.937mil|Location1.Y=1371.063mil|Location2.Y=1418.937mil|Absolute=True">Track (66.675mm,34.925mm)(66.675mm,35.941mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591mil|Location2.X=2659mil|Location1.Y=1301mil|Location2.Y=1369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591mil|Location2.X=2659mil|Location1.Y=1301mil|Location2.Y=1369mil|Absolute=True">Pad R7-1(66.675mm,33.909mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=1651.063mil|Location2.Y=1698.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=1651.063mil|Location2.Y=1698.937mil|Absolute=True">Track (50.165mm,42.037mm)(50.165mm,43.053mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=1701mil|Location2.Y=1769mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=1701mil|Location2.Y=1769mil|Absolute=True">Pad R6-2(50.165mm,44.069mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=1371.063mil|Location2.Y=1418.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=1371.063mil|Location2.Y=1418.937mil|Absolute=True">Track (50.165mm,34.925mm)(50.165mm,35.941mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=1301mil|Location2.Y=1369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=1301mil|Location2.Y=1369mil|Absolute=True">Pad R6-1(50.165mm,33.909mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.063mil|Location2.X=4378.937mil|Location1.Y=1901.063mil|Location2.Y=1908.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.063mil|Location2.X=4378.937mil|Location1.Y=1901.063mil|Location2.Y=1908.937mil|Absolute=True">Track (110.109mm,48.387mm)(111.125mm,48.387mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261mil|Location2.X=4329mil|Location1.Y=1871mil|Location2.Y=1939mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261mil|Location2.X=4329mil|Location1.Y=1871mil|Location2.Y=1939mil|Absolute=True">Pad R5-2(109.093mm,48.387mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.063mil|Location2.X=4658.937mil|Location1.Y=1901.063mil|Location2.Y=1908.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.063mil|Location2.X=4658.937mil|Location1.Y=1901.063mil|Location2.Y=1908.937mil|Absolute=True">Track (117.221mm,48.387mm)(118.237mm,48.387mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4661mil|Location2.X=4729mil|Location1.Y=1871mil|Location2.Y=1939mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4661mil|Location2.X=4729mil|Location1.Y=1871mil|Location2.Y=1939mil|Absolute=True">Pad R5-1(119.253mm,48.387mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=2606.063mil|Location2.Y=2653.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=2606.063mil|Location2.Y=2653.937mil|Absolute=True">Track (50.165mm,66.294mm)(50.165mm,67.31mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=2656mil|Location2.Y=2724mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=2656mil|Location2.Y=2724mil|Absolute=True">Pad R4-2(50.165mm,68.326mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=2326.063mil|Location2.Y=2373.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.063mil|Location2.X=1978.937mil|Location1.Y=2326.063mil|Location2.Y=2373.937mil|Absolute=True">Track (50.165mm,59.182mm)(50.165mm,60.198mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=2256mil|Location2.Y=2324mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1941mil|Location2.X=2009mil|Location1.Y=2256mil|Location2.Y=2324mil|Absolute=True">Pad R4-1(50.165mm,58.166mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.063mil|Location2.X=4658.937mil|Location1.Y=1561.063mil|Location2.Y=1568.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.063mil|Location2.X=4658.937mil|Location1.Y=1561.063mil|Location2.Y=1568.937mil|Absolute=True">Track (117.221mm,39.751mm)(118.237mm,39.751mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4661mil|Location2.X=4729mil|Location1.Y=1531mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4661mil|Location2.X=4729mil|Location1.Y=1531mil|Location2.Y=1599mil|Absolute=True">Pad R3-2(119.253mm,39.751mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.063mil|Location2.X=4378.937mil|Location1.Y=1561.063mil|Location2.Y=1568.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4331.063mil|Location2.X=4378.937mil|Location1.Y=1561.063mil|Location2.Y=1568.937mil|Absolute=True">Track (110.109mm,39.751mm)(111.125mm,39.751mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261mil|Location2.X=4329mil|Location1.Y=1531mil|Location2.Y=1599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261mil|Location2.X=4329mil|Location1.Y=1531mil|Location2.Y=1599mil|Absolute=True">Pad R3-1(109.093mm,39.751mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3261.063mil|Location2.X=3308.937mil|Location1.Y=1886.063mil|Location2.Y=1893.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3261.063mil|Location2.X=3308.937mil|Location1.Y=1886.063mil|Location2.Y=1893.937mil|Absolute=True">Track (82.931mm,48.006mm)(83.947mm,48.006mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3191mil|Location2.X=3259mil|Location1.Y=1856mil|Location2.Y=1924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3191mil|Location2.X=3259mil|Location1.Y=1856mil|Location2.Y=1924mil|Absolute=True">Pad R2-2(81.915mm,48.006mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.063mil|Location2.X=3588.937mil|Location1.Y=1886.063mil|Location2.Y=1893.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3541.063mil|Location2.X=3588.937mil|Location1.Y=1886.063mil|Location2.Y=1893.937mil|Absolute=True">Track (90.043mm,48.006mm)(91.059mm,48.006mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591mil|Location2.X=3659mil|Location1.Y=1856mil|Location2.Y=1924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591mil|Location2.X=3659mil|Location1.Y=1856mil|Location2.Y=1924mil|Absolute=True">Pad R2-1(92.075mm,48.006mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.063mil|Location2.X=3798.937mil|Location1.Y=2331.063mil|Location2.Y=2378.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.063mil|Location2.X=3798.937mil|Location1.Y=2331.063mil|Location2.Y=2378.937mil|Absolute=True">Track (96.393mm,59.309mm)(96.393mm,60.325mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3761mil|Location2.X=3829mil|Location1.Y=2261mil|Location2.Y=2329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3761mil|Location2.X=3829mil|Location1.Y=2261mil|Location2.Y=2329mil|Absolute=True">Pad R1-2(96.393mm,58.293mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.063mil|Location2.X=3798.937mil|Location1.Y=2611.063mil|Location2.Y=2658.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.063mil|Location2.X=3798.937mil|Location1.Y=2611.063mil|Location2.Y=2658.937mil|Absolute=True">Track (96.393mm,66.421mm)(96.393mm,67.437mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3761mil|Location2.X=3829mil|Location1.Y=2661mil|Location2.Y=2729mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3761mil|Location2.X=3829mil|Location1.Y=2661mil|Location2.Y=2729mil|Absolute=True">Pad R1-1(96.393mm,68.453mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1761.181mil|Location2.X=1769.055mil|Location1.Y=2707.835mil|Location2.Y=3062.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1761.181mil|Location2.X=1769.055mil|Location1.Y=2707.835mil|Location2.Y=3062.165mil|Absolute=True">Track (44.834mm,77.679mm)(44.834mm,68.879mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1661.709mil|Location2.X=1758.291mil|Location1.Y=2773.717mil|Location2.Y=2996.283mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1661.709mil|Location2.X=1758.291mil|Location1.Y=2773.717mil|Location2.Y=2996.283mil|Absolute=True">Pad J1-1(43.434mm,73.279mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.898mil|Location2.X=1548.583mil|Location1.Y=2668.465mil|Location2.Y=2727.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.898mil|Location2.X=1548.583mil|Location1.Y=2668.465mil|Location2.Y=2727.52mil|Absolute=True">Track (39.084mm,68.029mm)(39.084mm,69.029mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True">Pad J1-2(40.334mm,68.279mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.323mil|Location2.X=1647.008mil|Location1.Y=2668.465mil|Location2.Y=2727.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.323mil|Location2.X=1647.008mil|Location1.Y=2668.465mil|Location2.Y=2727.52mil|Absolute=True">Track (41.584mm,68.029mm)(41.584mm,69.029mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True">Pad J1-2(40.334mm,68.279mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.898mil|Location2.X=1647.008mil|Location1.Y=2668.465mil|Location2.Y=2688.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.898mil|Location2.X=1647.008mil|Location1.Y=2668.465mil|Location2.Y=2688.149mil|Absolute=True">Track (39.084mm,68.029mm)(41.584mm,68.029mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True">Pad J1-2(40.334mm,68.279mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.504mil|Location2.X=1769.055mil|Location1.Y=2707.835mil|Location2.Y=2715.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.504mil|Location2.X=1769.055mil|Location1.Y=2707.835mil|Location2.Y=2715.709mil|Absolute=True">Track (30.034mm,68.879mm)(44.834mm,68.879mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1476.669mil|Location2.X=1699.236mil|Location1.Y=2639.858mil|Location2.Y=2736.441mil|Absolute=True">Pad J1-2(40.334mm,68.279mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.063mil|Location2.X=3578.937mil|Location1.Y=1411.063mil|Location2.Y=1418.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.063mil|Location2.X=3578.937mil|Location1.Y=1411.063mil|Location2.Y=1418.937mil|Absolute=True">Track (89.789mm,35.941mm)(90.805mm,35.941mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581mil|Location2.X=3649mil|Location1.Y=1381mil|Location2.Y=1449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581mil|Location2.X=3649mil|Location1.Y=1381mil|Location2.Y=1449mil|Absolute=True">Pad D2-2(91.821mm,35.941mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.063mil|Location2.X=3298.937mil|Location1.Y=1411.063mil|Location2.Y=1418.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.063mil|Location2.X=3298.937mil|Location1.Y=1411.063mil|Location2.Y=1418.937mil|Absolute=True">Track (82.677mm,35.941mm)(83.693mm,35.941mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1381mil|Location2.Y=1449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1381mil|Location2.Y=1449mil|Absolute=True">Pad D2-1(81.661mm,35.941mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.063mil|Location2.X=3578.937mil|Location1.Y=1576.063mil|Location2.Y=1583.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.063mil|Location2.X=3578.937mil|Location1.Y=1576.063mil|Location2.Y=1583.937mil|Absolute=True">Track (89.789mm,40.132mm)(90.805mm,40.132mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581mil|Location2.X=3649mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581mil|Location2.X=3649mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True">Pad D1-2(91.821mm,40.132mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.063mil|Location2.X=3298.937mil|Location1.Y=1576.063mil|Location2.Y=1583.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.063mil|Location2.X=3298.937mil|Location1.Y=1576.063mil|Location2.Y=1583.937mil|Absolute=True">Track (82.677mm,40.132mm)(83.693mm,40.132mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True">Pad D1-1(81.661mm,40.132mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True">Text "D2" (81.051mm,37.821mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3249mil|Location1.Y=1546mil|Location2.Y=1614mil|Absolute=True">Pad D1-1(81.661mm,40.132mm)  Multi-Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDVLCYBPCII0VHNTO2UFQJGD4A1BQOT2KMGSH5OKHTPRKML4U4BFJH"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True">Text "D2" (81.051mm,37.821mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.063mil|Location2.X=3538.937mil|Location1.Y=1536.063mil|Location2.Y=1543.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.063mil|Location2.X=3538.937mil|Location1.Y=1536.063mil|Location2.Y=1543.937mil|Absolute=True">Track (83.693mm,39.116mm)(89.789mm,39.116mm)  Top Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3181mil|Location2.X=3300.968mil|Location1.Y=1479mil|Location2.Y=1558.981mil|Absolute=True">Text "D2" (81.051mm,37.821mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.063mil|Location2.X=3298.937mil|Location1.Y=1536.063mil|Location2.Y=1623.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\BE\ELECTENG209\Altium\PCB_Project\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.063mil|Location2.X=3298.937mil|Location1.Y=1536.063mil|Location2.Y=1623.937mil|Absolute=True">Track (83.693mm,39.116mm)(83.693mm,41.148mm)  Top Overlay</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>
