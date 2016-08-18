@@ -1,0 +1,21 @@
+* C:\Users\The Dude\Desktop\UOA Year 2\Semester 2\Electeng 209\3 Lab Documents\Labs\all-labs\209\Labs\AnalogueLab2\Lab2Task4.asc
+V1 N001 0 SINE(0 19.79898987322333 500)
+L1 N001 N007 3.7m
+R1 N007 0 20
+R2 N001 N005 150k
+R3 N005 0 12k
+D1 N008 0 BZX84C15L
+D2 N008 N005 BZX84C15L
+R4 N006 N005 90k
+R5 N003 0 90k
+R6 N006 N009 82k
+XU1 N006 N003 N002 0 N004 level.2 Avol=1Meg GBW=10Meg Slew=10Meg ilimit=25m rail=0 Vos=0 phimargin=45 en=0 enk=0 in=0 ink=0 Rin=500Meg
+V2 N009 0 1.65
+V3 N002 0 3.3
+R7 N004 N003 82k
+.model D D
+.lib C:\Program Files (x86)\LTC\LTspiceIV\lib\cmp\standard.dio
+.tran 0 1 .1 10u
+.lib UniversalOpamps2.sub
+.backanno
+.end
