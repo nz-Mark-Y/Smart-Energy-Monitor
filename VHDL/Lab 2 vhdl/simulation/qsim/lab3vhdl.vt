@@ -1,0 +1,430 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "08/18/2016 16:07:00"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    lab3vhdl
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module lab3vhdl_vlg_sample_tst(
+	clk,
+	rx,
+	sampler_tx
+);
+input  clk;
+input  rx;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(clk or rx)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module lab3vhdl_vlg_check_tst (
+	decimal_point,
+	segment7,
+	single_digit,
+	sampler_rx
+);
+input  decimal_point;
+input [6:0] segment7;
+input [3:0] single_digit;
+input sampler_rx;
+
+reg  decimal_point_expected;
+reg [6:0] segment7_expected;
+reg [3:0] single_digit_expected;
+
+reg  decimal_point_prev;
+reg [6:0] segment7_prev;
+reg [3:0] single_digit_prev;
+
+reg  decimal_point_expected_prev;
+reg [6:0] segment7_expected_prev;
+reg [3:0] single_digit_expected_prev;
+
+reg  last_decimal_point_exp;
+reg [6:0] last_segment7_exp;
+reg [3:0] last_single_digit_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:3] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 3'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	decimal_point_prev = decimal_point;
+	segment7_prev = segment7;
+	single_digit_prev = single_digit;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	decimal_point_expected_prev = decimal_point_expected;
+	segment7_expected_prev = segment7_expected;
+	single_digit_expected_prev = single_digit_expected;
+end
+
+
+
+// expected decimal_point
+initial
+begin
+	decimal_point_expected = 1'bX;
+end 
+// expected segment7[ 6 ]
+initial
+begin
+	segment7_expected[6] = 1'bX;
+end 
+// expected segment7[ 5 ]
+initial
+begin
+	segment7_expected[5] = 1'bX;
+end 
+// expected segment7[ 4 ]
+initial
+begin
+	segment7_expected[4] = 1'bX;
+end 
+// expected segment7[ 3 ]
+initial
+begin
+	segment7_expected[3] = 1'bX;
+end 
+// expected segment7[ 2 ]
+initial
+begin
+	segment7_expected[2] = 1'bX;
+end 
+// expected segment7[ 1 ]
+initial
+begin
+	segment7_expected[1] = 1'bX;
+end 
+// expected segment7[ 0 ]
+initial
+begin
+	segment7_expected[0] = 1'bX;
+end 
+// expected single_digit[ 3 ]
+initial
+begin
+	single_digit_expected[3] = 1'bX;
+end 
+// expected single_digit[ 2 ]
+initial
+begin
+	single_digit_expected[2] = 1'bX;
+end 
+// expected single_digit[ 1 ]
+initial
+begin
+	single_digit_expected[1] = 1'bX;
+end 
+// expected single_digit[ 0 ]
+initial
+begin
+	single_digit_expected[0] = 1'bX;
+end 
+// generate trigger
+always @(decimal_point_expected or decimal_point or segment7_expected or segment7 or single_digit_expected or single_digit)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected decimal_point = %b | expected segment7 = %b | expected single_digit = %b | ",decimal_point_expected_prev,segment7_expected_prev,single_digit_expected_prev);
+	$display("| real decimal_point = %b | real segment7 = %b | real single_digit = %b | ",decimal_point_prev,segment7_prev,single_digit_prev);
+`endif
+	if (
+		( decimal_point_expected_prev !== 1'bx ) && ( decimal_point_prev !== decimal_point_expected_prev )
+		&& ((decimal_point_expected_prev !== last_decimal_point_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port decimal_point :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", decimal_point_expected_prev);
+		$display ("     Real value = %b", decimal_point_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_decimal_point_exp = decimal_point_expected_prev;
+	end
+	if (
+		( segment7_expected_prev[0] !== 1'bx ) && ( segment7_prev[0] !== segment7_expected_prev[0] )
+		&& ((segment7_expected_prev[0] !== last_segment7_exp[0]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[0] = segment7_expected_prev[0];
+	end
+	if (
+		( segment7_expected_prev[1] !== 1'bx ) && ( segment7_prev[1] !== segment7_expected_prev[1] )
+		&& ((segment7_expected_prev[1] !== last_segment7_exp[1]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[1] = segment7_expected_prev[1];
+	end
+	if (
+		( segment7_expected_prev[2] !== 1'bx ) && ( segment7_prev[2] !== segment7_expected_prev[2] )
+		&& ((segment7_expected_prev[2] !== last_segment7_exp[2]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[2] = segment7_expected_prev[2];
+	end
+	if (
+		( segment7_expected_prev[3] !== 1'bx ) && ( segment7_prev[3] !== segment7_expected_prev[3] )
+		&& ((segment7_expected_prev[3] !== last_segment7_exp[3]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[3] = segment7_expected_prev[3];
+	end
+	if (
+		( segment7_expected_prev[4] !== 1'bx ) && ( segment7_prev[4] !== segment7_expected_prev[4] )
+		&& ((segment7_expected_prev[4] !== last_segment7_exp[4]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[4] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[4] = segment7_expected_prev[4];
+	end
+	if (
+		( segment7_expected_prev[5] !== 1'bx ) && ( segment7_prev[5] !== segment7_expected_prev[5] )
+		&& ((segment7_expected_prev[5] !== last_segment7_exp[5]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[5] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[5] = segment7_expected_prev[5];
+	end
+	if (
+		( segment7_expected_prev[6] !== 1'bx ) && ( segment7_prev[6] !== segment7_expected_prev[6] )
+		&& ((segment7_expected_prev[6] !== last_segment7_exp[6]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port segment7[6] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", segment7_expected_prev);
+		$display ("     Real value = %b", segment7_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_segment7_exp[6] = segment7_expected_prev[6];
+	end
+	if (
+		( single_digit_expected_prev[0] !== 1'bx ) && ( single_digit_prev[0] !== single_digit_expected_prev[0] )
+		&& ((single_digit_expected_prev[0] !== last_single_digit_exp[0]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port single_digit[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", single_digit_expected_prev);
+		$display ("     Real value = %b", single_digit_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_single_digit_exp[0] = single_digit_expected_prev[0];
+	end
+	if (
+		( single_digit_expected_prev[1] !== 1'bx ) && ( single_digit_prev[1] !== single_digit_expected_prev[1] )
+		&& ((single_digit_expected_prev[1] !== last_single_digit_exp[1]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port single_digit[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", single_digit_expected_prev);
+		$display ("     Real value = %b", single_digit_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_single_digit_exp[1] = single_digit_expected_prev[1];
+	end
+	if (
+		( single_digit_expected_prev[2] !== 1'bx ) && ( single_digit_prev[2] !== single_digit_expected_prev[2] )
+		&& ((single_digit_expected_prev[2] !== last_single_digit_exp[2]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port single_digit[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", single_digit_expected_prev);
+		$display ("     Real value = %b", single_digit_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_single_digit_exp[2] = single_digit_expected_prev[2];
+	end
+	if (
+		( single_digit_expected_prev[3] !== 1'bx ) && ( single_digit_prev[3] !== single_digit_expected_prev[3] )
+		&& ((single_digit_expected_prev[3] !== last_single_digit_exp[3]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port single_digit[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", single_digit_expected_prev);
+		$display ("     Real value = %b", single_digit_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_single_digit_exp[3] = single_digit_expected_prev[3];
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#100000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module lab3vhdl_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg clk;
+reg rx;
+// wires                                               
+wire decimal_point;
+wire [6:0] segment7;
+wire [3:0] single_digit;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+lab3vhdl i1 (
+// port map - connection between master ports and signals/registers   
+	.clk(clk),
+	.decimal_point(decimal_point),
+	.rx(rx),
+	.segment7(segment7),
+	.single_digit(single_digit)
+);
+
+// clk
+initial
+begin
+	repeat(312)
+	begin
+		clk = 1'b0;
+		clk = #160 1'b1;
+		# 160;
+	end
+	clk = 1'b0;
+end 
+
+// rx
+initial
+begin
+	rx = 1'b1;
+	rx = #5120 1'b0;
+	# 5120;
+	repeat(4)
+	begin
+		rx = 1'b1;
+		rx = #5120 1'b0;
+		# 5120;
+	end
+	rx = 1'b1;
+end 
+
+lab3vhdl_vlg_sample_tst tb_sample (
+	.clk(clk),
+	.rx(rx),
+	.sampler_tx(sampler)
+);
+
+lab3vhdl_vlg_check_tst tb_out(
+	.decimal_point(decimal_point),
+	.segment7(segment7),
+	.single_digit(single_digit),
+	.sampler_rx(sampler)
+);
+endmodule
+

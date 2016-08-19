@@ -1,0 +1,870 @@
+# do lab3vhdl.do 
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module lab3vhdl
+# 
+# Top level modules:
+# 	lab3vhdl
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module lab3vhdl_vlg_sample_tst
+# -- Compiling module lab3vhdl_vlg_check_tst
+# -- Compiling module lab3vhdl_vlg_vec_tst
+# 
+# Top level modules:
+# 	lab3vhdl_vlg_vec_tst
+# vsim -L max7000ae_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -t 1ps -novopt work.lab3vhdl_vlg_vec_tst 
+# Loading work.lab3vhdl_vlg_vec_tst
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# Loading work.lab3vhdl
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(88): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(101): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(128): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(160): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(191): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(221): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(250): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(280): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(308): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(333): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(362): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(393): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(423): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(451): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(479): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(507): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(535): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(562): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(589): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(616): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(643): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(670): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(697): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(724): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(751): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(779): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(807): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(834): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(861): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(889): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(916): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(943): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(970): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(997): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1025): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1052): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1079): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1106): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1133): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1160): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1187): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1214): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1241): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1268): Instantiation of 'max_mcell' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1282): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1295): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1308): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1321): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1334): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1347): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1360): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1373): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1386): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1399): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1412): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3033) lab3vhdl.vo(1425): Instantiation of 'max_io' failed. The design unit was not found.
+# 
+#         Region: /lab3vhdl_vlg_vec_tst/i1
+#         Searched libraries:
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera
+#             c:/altera/13.0/modelsim_ase/altera/verilog/altera_mf
+#             c:/altera/13.0/modelsim_ase/altera/verilog/220model
+#             c:/altera/13.0/modelsim_ase/altera/vhdl/sgate
+#             C:/Users/The Dude/Downloads/Lab 2 vhdl_simulate/simulation/qsim/work
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# Loading work.lab3vhdl_vlg_sample_tst
+# ** Error: (vsim-19) Failed to access library 'max7000ae_ver' at "max7000ae_ver".
+# 
+# No such file or directory. (errno = ENOENT)
+# Loading work.lab3vhdl_vlg_check_tst
+# Error loading design

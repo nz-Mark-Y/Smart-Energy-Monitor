@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Aug 18 16:48:47 2016
+Quartus II 64-Bit Version : 13.0.0 Build 156 04/24/2013 SJ Web Edition
+Revision Name : lab3vhdl
+Top-level Entity Name : lab3vhdl
+Family : Cyclone III
+Total logic elements : 55
+    Total combinational functions : 35
+    Dedicated logic registers : 43
+Total registers : 43
+Total pins : 14
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

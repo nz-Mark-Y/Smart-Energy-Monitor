@@ -1,0 +1,7 @@
+
+State Machine - |lab3vhdl|fsm:inst|CS
+Name CS.state_bit_1 CS.state_bit_0 
+CS.idle 0 0 
+CS.start 0 1 
+CS.data 1 0 
+CS.stop 1 1 

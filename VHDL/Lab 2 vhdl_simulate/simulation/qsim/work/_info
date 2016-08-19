@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\WindowsUser\Documents\GitHub\Lab 2 vhdl\simulation\qsim
+vlab3vhdl
+Z1 I@RNzj02QoRFW;221FaReL1
+Z2 VE7QBX7ShH73Jaz89_7DVj1
+Z3 dC:\Users\The Dude\Downloads\Lab 2 vhdl_simulate\simulation\qsim
+Z4 w1471495462
+Z5 8lab3vhdl.vo
+Z6 Flab3vhdl.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|lab3vhdl.vo|
+Z9 o-work work -O0
+!i10b 1
+Z10 !s100 44hd0ACn3XJNK@3K6LBVR3
+!s85 0
+Z11 !s108 1471495464.297000
+Z12 !s107 lab3vhdl.vo|
+!s101 -O0
+vlab3vhdl_vlg_check_tst
+!i10b 1
+Z13 !s100 @PJi]D]dEA8zmJ8RnFZfK1
+Z14 I2IB>`JY;]VmdZTPLOQ8Yz1
+Z15 V5=>hg]l_70CF66lJ`[[FZ0
+R3
+Z16 w1471495460
+Z17 8lab3vhdl.vt
+Z18 Flab3vhdl.vt
+L0 59
+R7
+r1
+!s85 0
+31
+Z19 !s108 1471495464.640000
+Z20 !s107 lab3vhdl.vt|
+Z21 !s90 -work|work|lab3vhdl.vt|
+!s101 -O0
+R9
+vlab3vhdl_vlg_sample_tst
+!i10b 1
+Z22 !s100 z_ZgPaU<>ikVg7<jdzjLo2
+Z23 I`0BL8KONl4`^BzY<J`6M;2
+Z24 Vj:VT>Zh<[o4zPhFm6=AQO0
+R3
+R16
+R17
+R18
+L0 29
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9
+vlab3vhdl_vlg_vec_tst
+!i10b 1
+Z25 !s100 FkV6MWML?fXS;@dQg2H6O1
+Z26 IWAKa>XEngd:6a9m:f3VDC1
+Z27 VGHbSE87BobHCleg6B?S6T2
+R3
+R16
+R17
+R18
+Z28 L0 368
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9

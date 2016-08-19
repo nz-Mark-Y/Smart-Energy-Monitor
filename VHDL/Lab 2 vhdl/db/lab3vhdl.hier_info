@@ -1,0 +1,228 @@
+|lab3vhdl
+decimal_point <= multiplex_7seg:inst10.decimal_point
+clk => multiplex_7seg:inst10.clk
+clk => bcounter:inst6.clk
+clk => scounter:inst5.clk
+clk => fsm:inst.clk
+clk => disp_register:inst8.clk
+clk => shiftreg:inst7.clk
+clk => sevensegment_decoder:inst11.clk
+rx => fsm:inst.Rx
+rx => shiftreg:inst7.Rx
+segment7[0] <= sevensegment_decoder:inst11.segment7[0]
+segment7[1] <= sevensegment_decoder:inst11.segment7[1]
+segment7[2] <= sevensegment_decoder:inst11.segment7[2]
+segment7[3] <= sevensegment_decoder:inst11.segment7[3]
+segment7[4] <= sevensegment_decoder:inst11.segment7[4]
+segment7[5] <= sevensegment_decoder:inst11.segment7[5]
+segment7[6] <= sevensegment_decoder:inst11.segment7[6]
+single_digit[0] <= multiplex_7seg:inst10.single_digit[0]
+single_digit[1] <= multiplex_7seg:inst10.single_digit[1]
+single_digit[2] <= multiplex_7seg:inst10.single_digit[2]
+single_digit[3] <= multiplex_7seg:inst10.single_digit[3]
+
+
+|lab3vhdl|multiplex_7seg:inst10
+clk => single_digit[0]~reg0.CLK
+clk => single_digit[1]~reg0.CLK
+clk => single_digit[2]~reg0.CLK
+clk => single_digit[3]~reg0.CLK
+clk => decimal_point~reg0.CLK
+bcd[0] => ~NO_FANOUT~
+bcd[1] => ~NO_FANOUT~
+bcd[2] => ~NO_FANOUT~
+bcd[3] => ~NO_FANOUT~
+bcd[4] => decimal_point~reg0.DATAIN
+bcd[5] => Mux0.IN5
+bcd[5] => Mux1.IN5
+bcd[5] => Mux2.IN5
+bcd[5] => Mux3.IN5
+bcd[6] => Mux0.IN4
+bcd[6] => Mux1.IN4
+bcd[6] => Mux2.IN4
+bcd[6] => Mux3.IN4
+bcd[7] => ~NO_FANOUT~
+decimal_point <= decimal_point~reg0.DB_MAX_OUTPUT_PORT_TYPE
+single_digit[0] <= single_digit[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+single_digit[1] <= single_digit[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+single_digit[2] <= single_digit[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+single_digit[3] <= single_digit[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|disp_register:inst8
+D[0] => Q.DATAB
+D[1] => Q.DATAB
+D[2] => Q.DATAB
+D[3] => Q.DATAB
+D[4] => Q.DATAB
+D[5] => Q.DATAB
+D[6] => Q.DATAB
+D[7] => Q.DATAB
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+load => Q.OUTPUTSELECT
+clk => Q[0]~reg0.CLK
+clk => Q[1]~reg0.CLK
+clk => Q[2]~reg0.CLK
+clk => Q[3]~reg0.CLK
+clk => Q[4]~reg0.CLK
+clk => Q[5]~reg0.CLK
+clk => Q[6]~reg0.CLK
+clk => Q[7]~reg0.CLK
+Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= Q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= Q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|fsm:inst
+Rx => Selector0.IN2
+Rx => output_logic.IN0
+B => output_logic.IN0
+B => output_logic.IN0
+S7 => Selector2.IN3
+S7 => Sen.IN0
+S7 => Selector4.IN3
+S7 => Br.DATAB
+S15 => Selector0.IN3
+S15 => output_logic.IN1
+S15 => output_logic.IN1
+S15 => output_logic.IN0
+clk => CS.IN1
+reset => ~NO_FANOUT~
+Sen <= Selector5.DB_MAX_OUTPUT_PORT_TYPE
+Ben <= Ben.DB_MAX_OUTPUT_PORT_TYPE
+Sr <= Selector4.DB_MAX_OUTPUT_PORT_TYPE
+Br <= Br.DB_MAX_OUTPUT_PORT_TYPE
+B_shift <= B_shift.DB_MAX_OUTPUT_PORT_TYPE
+control_disp <= control_disp.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|compare7n:inst3
+b_count[0] => Equal0.IN7
+b_count[1] => Equal0.IN6
+b_count[2] => Equal0.IN5
+b_count[3] => Equal0.IN4
+cmp7_n <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|bcounter:inst6
+clk => b_count_temp[0].CLK
+clk => b_count_temp[1].CLK
+clk => b_count_temp[2].CLK
+clk => b_count_temp[3].CLK
+en_N => b_count_temp.OUTPUTSELECT
+en_N => b_count_temp.OUTPUTSELECT
+en_N => b_count_temp.OUTPUTSELECT
+en_N => b_count_temp.OUTPUTSELECT
+reset_N => b_count_temp.OUTPUTSELECT
+reset_N => b_count_temp.OUTPUTSELECT
+reset_N => b_count_temp.OUTPUTSELECT
+reset_N => b_count_temp.OUTPUTSELECT
+b_count[0] <= b_count_temp[0].DB_MAX_OUTPUT_PORT_TYPE
+b_count[1] <= b_count_temp[1].DB_MAX_OUTPUT_PORT_TYPE
+b_count[2] <= b_count_temp[2].DB_MAX_OUTPUT_PORT_TYPE
+b_count[3] <= b_count_temp[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|compare7s:inst4
+s_count[0] => Equal0.IN7
+s_count[1] => Equal0.IN6
+s_count[2] => Equal0.IN5
+s_count[3] => Equal0.IN4
+cmp7_s <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|scounter:inst5
+clk => s_count_temp[0].CLK
+clk => s_count_temp[1].CLK
+clk => s_count_temp[2].CLK
+clk => s_count_temp[3].CLK
+en_S => s_count_temp.OUTPUTSELECT
+en_S => s_count_temp.OUTPUTSELECT
+en_S => s_count_temp.OUTPUTSELECT
+en_S => s_count_temp.OUTPUTSELECT
+reset_S => s_count_temp.OUTPUTSELECT
+reset_S => s_count_temp.OUTPUTSELECT
+reset_S => s_count_temp.OUTPUTSELECT
+reset_S => s_count_temp.OUTPUTSELECT
+s_count[0] <= s_count_temp[0].DB_MAX_OUTPUT_PORT_TYPE
+s_count[1] <= s_count_temp[1].DB_MAX_OUTPUT_PORT_TYPE
+s_count[2] <= s_count_temp[2].DB_MAX_OUTPUT_PORT_TYPE
+s_count[3] <= s_count_temp[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|compare15s:inst2
+s_count[0] => Equal0.IN7
+s_count[1] => Equal0.IN6
+s_count[2] => Equal0.IN5
+s_count[3] => Equal0.IN4
+cmp15_s <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|shiftreg:inst7
+clk => output_8bit_temp[0].CLK
+clk => output_8bit_temp[1].CLK
+clk => output_8bit_temp[2].CLK
+clk => output_8bit_temp[3].CLK
+clk => output_8bit_temp[4].CLK
+clk => output_8bit_temp[5].CLK
+clk => output_8bit_temp[6].CLK
+clk => output_8bit_temp[7].CLK
+Rx => output_8bit_temp.DATAB
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+en_SHIFT => output_8bit_temp.OUTPUTSELECT
+output_8bit[0] <= output_8bit_temp[0].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[1] <= output_8bit_temp[1].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[2] <= output_8bit_temp[2].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[3] <= output_8bit_temp[3].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[4] <= output_8bit_temp[4].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[5] <= output_8bit_temp[5].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[6] <= output_8bit_temp[6].DB_MAX_OUTPUT_PORT_TYPE
+output_8bit[7] <= output_8bit_temp[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3vhdl|sevensegment_decoder:inst11
+bcd[0] => digit[0].DATAIN
+bcd[1] => digit[1].DATAIN
+bcd[2] => digit[2].DATAIN
+bcd[3] => digit[3].DATAIN
+bcd[4] => ~NO_FANOUT~
+bcd[5] => ~NO_FANOUT~
+bcd[6] => ~NO_FANOUT~
+bcd[7] => ~NO_FANOUT~
+clk => segment7[0]~reg0.CLK
+clk => segment7[1]~reg0.CLK
+clk => segment7[2]~reg0.CLK
+clk => segment7[3]~reg0.CLK
+clk => segment7[4]~reg0.CLK
+clk => segment7[5]~reg0.CLK
+clk => segment7[6]~reg0.CLK
+clk => digit[0].CLK
+clk => digit[1].CLK
+clk => digit[2].CLK
+clk => digit[3].CLK
+segment7[0] <= segment7[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[1] <= segment7[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[2] <= segment7[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[3] <= segment7[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[4] <= segment7[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[5] <= segment7[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+segment7[6] <= segment7[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
