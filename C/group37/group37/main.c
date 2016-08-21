@@ -23,8 +23,8 @@ int main(void) {
 	}
 
     while (1) {
-		uint8_t data = dataArray[index];	//Get the data to send	
-		//uint8_t data = 21;
+		//uint8_t data = dataArray[index];	//Get the data to send	
+		uint8_t data = wololo(4, 0, 0);
 		uart_transmit(data);
 		_delay_ms(3);	//Small time delay so that no apparent flicker on seven segment displays
 		index++;
