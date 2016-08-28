@@ -12,19 +12,28 @@
 
 int main(void) {
 	uart_init();	//Tells me the position of the data to send
-	int dataInt = 6969;
+	float dataFloat = 6921;
+	unsigned int dataInt;
 	uint8_t hasDecimal = 0;
 	uint8_t dataArray[4];
 	uint8_t index = 0;
-	
+	uint8_t decimalPos = 0;
+
+	decimalPos = find_decimal(dataFloat);
+	dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5);
+
 	for (int i=3;i>=0;i--) {
+		if ((decimalPos == i) && ((3-decimalPos) > 0)) {
+			hasDecimal = 1;
+		} else {
+			hasDecimal = 0;
+		}
 		dataArray[i] = wololo(dataInt%10, i, hasDecimal);
 		dataInt = dataInt/10;
 	}
 
     while (1) {
-		//uint8_t data = dataArray[index];	//Get the data to send	
-		uint8_t data = wololo(4, 0, 0);
+		uint8_t data = dataArray[index];	//Get the data to send	
 		uart_transmit(data);
 		_delay_ms(3);	//Small time delay so that no apparent flicker on seven segment displays
 		index++;
