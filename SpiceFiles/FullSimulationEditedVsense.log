@@ -1,0 +1,24 @@
+Circuit: * C:\Users\James\Desktop\Git209\209\SpiceFiles\FullSimulationEditedVsense.asc
+
+Per .tran options, skipping operating point for transient analysis.
+Ignoring empty pin current: Ix(u2:3)
+
+Date: Mon Aug 29 19:30:47 2016
+Total elapsed time: 0.454 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 21569
+traniter = 21569
+tranpoints = 10231
+accept = 10157
+rejected = 74
+matrix size = 39
+fillins = 27
+solver = Normal
+Thread vector: 10.2/6.9[2] 3.3/2.4[2] 0.8/0.8[1] 0.2/0.7[1]  2592/500
+Matrix Compiler1: 5.18 KB object code size  1.0/0.6/[0.3]
+Matrix Compiler2: 4.15 KB object code size  0.4/0.5/[0.2]
+
+
