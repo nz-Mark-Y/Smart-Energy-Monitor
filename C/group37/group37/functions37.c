@@ -23,6 +23,13 @@
 		UDR0 = data;
  }
 
+ unsigned int find_decimal(float data) {
+	if (data < 10) { return 0; }
+	if (data < 100) { return 1; }
+	if (data < 1000) { return 2; }
+	return 3;
+ }
+
  //Converts our parameters into the value to send
  unsigned int wololo(uint8_t input, uint8_t position, uint8_t decimal) {
 	unsigned int output = input;
