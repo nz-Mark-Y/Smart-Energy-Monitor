@@ -21,11 +21,10 @@ def main():
     print("connected to: " + ser.portstr)
 
     previousEightDigits = []
-    eightDigits = []
     dataArray = [0,0,0,0]
 
     while True:
-        
+        eightDigits = []
         while len(eightDigits) < 8:
             decoded = ser.read().decode("utf-8")
             if (len(decoded) > 0):
@@ -38,7 +37,6 @@ def main():
                 dataArray[i-largestIndex] = eightDigits[i]
             print(dataArray)
             previousEightDigits = eightDigits
-            print(previousEightDigits)
         
     ser.close()
     return
