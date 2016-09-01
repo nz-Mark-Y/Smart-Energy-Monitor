@@ -8,6 +8,7 @@
 # |  4. Profit                                                                                     |
 # |================================================================================================|
 import serial
+from firebase import firebase
 
 def main():
     ser = serial.Serial(
@@ -19,6 +20,8 @@ def main():
             timeout=0)
 
     print("connected to: " + ser.portstr)
+
+    firebaseObject = firebase.FirebaseApplication('https://electeng209-520f4.firebaseio.com/', authentication=None)
 
     previousEightDigits = []
     dataArray = [0,0,0,0]
@@ -37,6 +40,7 @@ def main():
                 for i in range(largestIndex,largestIndex+4):
                     dataArray[i-largestIndex] = eightDigits[i]
                 value = ololow(dataArray)
+                result = firebaseObject.post('/data', value)
                 print(value)
             previousEightDigits = eightDigits
     ser.close()
