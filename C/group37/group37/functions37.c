@@ -23,11 +23,13 @@
 		UDR0 = data;
  }
 
+ //Initializes the timer
  void timer0_init() {
-	TCCR0B |= (1<<CS00)|(1<<CS02);
-	TCNT0 = 0;
+	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
+	TCNT0 = 0; //Initialize timer0
  }
-
+ 
+ //Finds the decimal place in the float
  unsigned int find_decimal(float data) {
 	if (data < 10) { return 0; }
 	if (data < 100) { return 1; }
