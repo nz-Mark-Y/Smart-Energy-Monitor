@@ -23,6 +23,11 @@
 		UDR0 = data;
  }
 
+ void timer0_init() {
+	TCCR0B |= (1<<CS00)|(1<<CS02);
+	TCNT0 = 0;
+ }
+
  unsigned int find_decimal(float data) {
 	if (data < 10) { return 0; }
 	if (data < 100) { return 1; }

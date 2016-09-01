@@ -9,23 +9,48 @@
 #================================================================================================
 import serial
 
-ser = serial.Serial(
-    port='COM6',\
-    baudrate=9600,\
-    parity=serial.PARITY_NONE,\
-    stopbits=serial.STOPBITS_ONE,\
-    bytesize=serial.EIGHTBITS,\
-        timeout=0)
+def main():
+    ser = serial.Serial(
+        port='COM6',\
+        baudrate=9600,\
+        parity=serial.PARITY_NONE,\
+        stopbits=serial.STOPBITS_ONE,\
+        bytesize=serial.EIGHTBITS,\
+            timeout=0)
 
-print("connected to: " + ser.portstr)
+    print("connected to: " + ser.portstr)
 
-#this will store the line
-line = []
+    previousEightDigits = []
+    eightDigits = []
+    dataArray = [0,0,0,0]
 
-while True:
-    decoded = ser.read().decode("utf-8")
-    if (len(decoded) > 0):
-        num = ord(decoded)
-        print(num)
+    while True:
+        
+        while len(eightDigits) < 8:
+            decoded = ser.read().decode("utf-8")
+            if (len(decoded) > 0):
+                num = ord(decoded)
+                eightDigits.append(num)
 
-ser.close()
+        if eightDigits != previousEightDigits:
+            largestIndex = findLargestIndex(eightDigits)
+            for i in range(largestIndex,largestIndex+4):
+                dataArray[i-largestIndex] = eightDigits[i]
+            print(dataArray)
+            previousEightDigits = eightDigits
+            print(previousEightDigits)
+        
+    ser.close()
+    return
+
+def findLargestIndex(myArray):
+    largestIndex = 0
+    largestNum = myArray[largestIndex]
+    for i in range(0,len(myArray)):
+        if myArray[i] > largestNum:
+            largestNum = myArray[i]
+            largestIndex = i
+    return largestIndex
+  
+main()
+    
