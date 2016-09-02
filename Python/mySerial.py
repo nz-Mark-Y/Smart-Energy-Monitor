@@ -8,7 +8,18 @@
 # |  4. Profit                                                                                     |
 # |================================================================================================|
 import serial
+import json
 from firebase import firebase
+
+class MyData:
+    numberCount = 0
+    def __init__(self, value):
+        self.value = value
+        MyData.numberCount += 1
+        self.number = MyData.numberCount
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
 
 def main():
     ser = serial.Serial(
@@ -22,6 +33,8 @@ def main():
     print("connected to: " + ser.portstr)
 
     firebaseObject = firebase.FirebaseApplication('https://electeng209-520f4.firebaseio.com/', authentication=None)
+    print("Clearing old data")
+    firebaseObject.delete('/data', None)
 
     previousEightDigits = []
     dataArray = [0,0,0,0]
@@ -29,7 +42,12 @@ def main():
     while True:
         eightDigits = []
         while len(eightDigits) < 8:
-            decoded = ser.read().decode("utf-8")
+            while True:
+                try:
+                    decoded = ser.read().decode("utf-8")
+                    break
+                except UnicodeDecodeError:
+                    print("Invalid Start Location. Reattempting.")
             if (len(decoded) > 0):
                 num = ord(decoded)
                 eightDigits.append(num)
@@ -40,8 +58,9 @@ def main():
                 for i in range(largestIndex,largestIndex+4):
                     dataArray[i-largestIndex] = eightDigits[i]
                 value = ololow(dataArray)
-                result = firebaseObject.post('/data', value)
-                print(value)
+                dataToSend = MyData(value)
+                result = firebaseObject.post('/data', dataToSend.toJSON())
+                print(dataToSend.value)
             previousEightDigits = eightDigits
     ser.close()
     return
