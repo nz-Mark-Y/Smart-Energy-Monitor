@@ -1,9 +1,9 @@
-Circuit: * E:\BE\ELECTENG209\Labs\AnalogueLab2\Lab2Task5.asc
+Circuit: * C:\Users\The Dude\Desktop\UOA Year 2\Semester 2\Electeng 209\3 Lab Documents\Labs\all-labs\209\Labs\AnalogueLab2\Lab2Task5.asc
 
 Direct Newton iteration for .op point succeeded.
 
-Date: Fri Aug 19 13:47:03 2016
-Total elapsed time: 35.879 seconds.
+Date: Fri Aug 19 00:43:44 2016
+Total elapsed time: 3.641 seconds.
 
 tnom = 27
 temp = 27
@@ -16,7 +16,7 @@ rejected = 0
 matrix size = 15
 fillins = 3
 solver = Normal
-Matrix Compiler1: 632 bytes object code size  1.1/0.5/[0.2]
-Matrix Compiler2: 1.13 KB object code size  0.5/0.7/[0.4]
+Matrix Compiler1: 632 bytes object code size  0.7/0.5/[0.4]
+Matrix Compiler2: off  [0.4]/0.7/0.5
 
 
