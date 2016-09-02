@@ -208,18 +208,20 @@ Disassembly of section .text:
 00000158 <timer0_init>:
  }
 
+ //Initializes the timer
  void timer0_init() {
 	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
  158:	85 b5       	in	r24, 0x25	; 37
  15a:	85 60       	ori	r24, 0x05	; 5
  15c:	85 bd       	out	0x25, r24	; 37
-	TCNT0 = 0; //Initialise timer0
+	TCNT0 = 0; //Initialize timer0
  15e:	16 bc       	out	0x26, r1	; 38
  160:	08 95       	ret
 
 00000162 <find_decimal>:
  }
-
+ 
+ //Finds the decimal place in the float
  unsigned int find_decimal(float data) {
  162:	cf 92       	push	r12
  164:	df 92       	push	r13
@@ -268,10 +270,10 @@ Disassembly of section .text:
  1b8:	59 0b       	sbc	r21, r25
  1ba:	ca 01       	movw	r24, r20
  1bc:	05 c0       	rjmp	.+10     	; 0x1c8 <find_decimal+0x66>
-	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
-	TCNT0 = 0; //Initialise timer0
+	TCNT0 = 0; //Initialize timer0
  }
-
+ 
+ //Finds the decimal place in the float
  unsigned int find_decimal(float data) {
 	if (data < 10) { return 0; }
  1be:	80 e0       	ldi	r24, 0x00	; 0
