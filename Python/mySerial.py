@@ -11,6 +11,7 @@ import serial
 import json
 from firebase import firebase
 
+# Class to store each data value along with a timestamp and which data number it is
 class MyData:
     numberCount = 0
     def __init__(self, value):
@@ -20,8 +21,10 @@ class MyData:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
-
+    
+# Main function
 def main():
+    # Set up serial listening
     ser = serial.Serial(
         port='COM6',\
         baudrate=9600,\
@@ -29,42 +32,47 @@ def main():
         stopbits=serial.STOPBITS_ONE,\
         bytesize=serial.EIGHTBITS,\
             timeout=0)
-
     print("connected to: " + ser.portstr)
 
+    #Set up firebase and clear old data
     firebaseObject = firebase.FirebaseApplication('https://electeng209-520f4.firebaseio.com/', authentication=None)
     print("Clearing old data")
     firebaseObject.delete('/data', None)
 
-    previousEightDigits = []
-    dataArray = [0,0,0,0]
+    previousEightDigits = [] # Eight digit array for sampling the input
+    dataArray = [0,0,0,0] # The four integers which represent the data
 
+    # Start reading data from serial port
     while True:
         eightDigits = []
         while len(eightDigits) < 8:
             while True:
                 try:
-                    decoded = ser.read().decode("utf-8")
+                    decoded = ser.read().decode("utf-8") # Decode ascii into integers
                     break
                 except UnicodeDecodeError:
-                    print("Invalid Start Location. Reattempting.")
+                    print("Invalid Start Location. Reattempting.") # Just in case
             if (len(decoded) > 0):
                 num = ord(decoded)
-                eightDigits.append(num)
+                eightDigits.append(num) # Add the integers into an eight integer array
 
-        if eightDigits != previousEightDigits:
+        if eightDigits != previousEightDigits: # If we have a change
             largestIndex = findLargestIndex(eightDigits)
             if (largestIndex <= 4) and (eightDigits[largestIndex] not in eightDigits[largestIndex+1:largestIndex+4]):
                 for i in range(largestIndex,largestIndex+4):
-                    dataArray[i-largestIndex] = eightDigits[i]
-                value = ololow(dataArray)
-                dataToSend = MyData(value)
-                result = firebaseObject.post('/data', dataToSend.toJSON())
-                print(dataToSend.value)
+                    dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
+                value = ololow(dataArray) # Convert the data array back into the data sent
+                dataToSend = MyData(value) # Create a MyData object to upload to firebase as JSON
+                result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
+                print(dataToSend.value) # For debugging purposes
+                #===========================
+                # Put graphing in here
+                #===========================
             previousEightDigits = eightDigits
     ser.close()
     return
 
+# Finds the largest integer in an array
 def findLargestIndex(myArray):
     largestIndex = 0
     largestNum = myArray[largestIndex]
@@ -74,6 +82,7 @@ def findLargestIndex(myArray):
             largestIndex = i
     return largestIndex
 
+# Converting the data array back into the float that was measured by the micro
 def ololow(myArray):
     value = 0
     decimalPlace = 3
