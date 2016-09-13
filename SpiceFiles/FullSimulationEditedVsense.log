@@ -3,22 +3,22 @@ Circuit: * C:\Users\James\Desktop\Git209\209\SpiceFiles\FullSimulationEditedVsen
 Per .tran options, skipping operating point for transient analysis.
 Ignoring empty pin current: Ix(u2:3)
 
-Date: Mon Sep 12 13:05:31 2016
-Total elapsed time: 0.540 seconds.
+Date: Wed Sep 14 05:09:57 2016
+Total elapsed time: 0.433 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 21135
-traniter = 21135
-tranpoints = 10146
-accept = 10106
+totiter = 21142
+traniter = 21142
+tranpoints = 10149
+accept = 10109
 rejected = 40
-matrix size = 43
-fillins = 32
+matrix size = 39
+fillins = 27
 solver = Normal
-Thread vector: 12.7/8.3[2] 3.9/2.7[2] 0.9/0.8[1] 0.3/0.8[1]  2592/500
-Matrix Compiler1: 6.06 KB object code size  1.3/0.6/[0.5]
-Matrix Compiler2: 4.65 KB object code size  0.5/0.5/[0.4]
+Thread vector: 12.4/7.3[2] 3.7/2.4[2] 0.9/0.8[2] 0.2/0.7[1]  2592/500
+Matrix Compiler1: 5.18 KB object code size  1.1/0.6/[0.4]
+Matrix Compiler2: 4.15 KB object code size  0.4/0.5/[0.3]
 
 

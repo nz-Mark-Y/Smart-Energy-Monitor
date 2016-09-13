@@ -1,0 +1,10 @@
+Added Component: Designator=D7(AXIAL-DIODE-0.4)
+Added Component: Designator=D8(AXIAL-DIODE-0.4)
+Added Pin To Net: NetName=ISENS Pin=D7-1
+Added Pin To Net: NetName=GND Pin=D8-2
+Added Pin To Net: NetName=NetD7_2 Pin=D7-2
+Added Pin To Net: NetName=NetD7_2 Pin=D8-1
+Added Net: Name=NetD7_2
+Added Member To Class: ClassName=Sheet1 Member=Component D7 3V3
+Added Member To Class: ClassName=Sheet1 Member=Component D8 3V3
+Added Room: Name=Sheet1

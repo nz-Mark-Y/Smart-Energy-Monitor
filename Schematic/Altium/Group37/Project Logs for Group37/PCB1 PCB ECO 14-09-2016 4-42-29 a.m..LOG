@@ -1,0 +1,52 @@
+Removed Pin From Net: NetName=GND Pin=U3-3
+Removed Pin From Net: NetName=GND Pin=U3-12
+Change Component Comment : Designator=C11 Old Comment=6.8u New Comment=470n
+Added Component: Designator=C12(FILM CAP-0.2)
+Added Component: Designator=C13(FILM CAP-0.2)
+Added Component: Designator=R8(AXIAL-0.4)
+Added Component: Designator=R11(AXIAL-0.4)
+Added Component: Designator=R17(AXIAL-0.4)
+Added Component: Designator=R28(AXIAL-0.4)
+Added Component: Designator=R29(AXIAL-0.4)
+Added Component: Designator=R30(AXIAL-0.4)
+Added Component: Designator=R31(AXIAL-0.4)
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Pin To Net: NetName=GND Pin=R29-2
+Added Pin To Net: NetName=ISENS Pin=R30-1
+Added Pin To Net: NetName=1V65B Pin=R31-1
+Added Pin To Net: NetName=1V65 Pin=U3-12
+Added Pin To Net: NetName=I-HIGAIN Pin=C12-1
+Added Pin To Net: NetName=I-HIGAIN Pin=R11-1
+Added Pin To Net: NetName=I-HIGAIN Pin=U3-14
+Added Net: Name=I-HIGAIN
+Added Pin To Net: NetName=NetC12_2 Pin=C12-2
+Added Pin To Net: NetName=NetC12_2 Pin=R28-1
+Added Pin To Net: NetName=NetC12_2 Pin=U3-13
+Added Net: Name=NetC12_2
+Added Pin To Net: NetName=NetC13_1 Pin=C13-1
+Added Pin To Net: NetName=NetC13_1 Pin=R11-2
+Added Pin To Net: NetName=NetC13_1 Pin=R17-1
+Added Pin To Net: NetName=NetC13_1 Pin=R28-2
+Added Net: Name=NetC13_1
+Added Pin To Net: NetName=NetR8_1 Pin=R8-1
+Added Pin To Net: NetName=NetR8_1 Pin=R17-2
+Added Pin To Net: NetName=NetR8_1 Pin=U3-1
+Added Net: Name=NetR8_1
+Added Pin To Net: NetName=NetR8_2 Pin=R8-2
+Added Pin To Net: NetName=NetR8_2 Pin=R29-1
+Added Pin To Net: NetName=NetR8_2 Pin=U3-2
+Added Net: Name=NetR8_2
+Added Pin To Net: NetName=NetR30_2 Pin=R30-2
+Added Pin To Net: NetName=NetR30_2 Pin=R31-2
+Added Pin To Net: NetName=NetR30_2 Pin=U3-3
+Added Net: Name=NetR30_2
+Added Member To Class: ClassName=Sheet1 Member=Component C12 2.2n
+Added Member To Class: ClassName=Sheet1 Member=Component C13 6.8n
+Added Member To Class: ClassName=Sheet1 Member=Component R8 180k
+Added Member To Class: ClassName=Sheet1 Member=Component R11 5.6k
+Added Member To Class: ClassName=Sheet1 Member=Component R17 5.6k
+Added Member To Class: ClassName=Sheet1 Member=Component R28 12k
+Added Member To Class: ClassName=Sheet1 Member=Component R29 10k
+Added Member To Class: ClassName=Sheet1 Member=Component R30 10k
+Added Member To Class: ClassName=Sheet1 Member=Component R31 180k
+Added Room: Name=Sheet1
