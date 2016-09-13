@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=1V65 Pin=R24-1
+Removed Pin From Net: NetName=1V65 Pin=U3-3
+Added Component: Designator=R26(AXIAL-0.4)
+Added Pin To Net: NetName=1V65 Pin=R26-1
+Added Pin To Net: NetName=1V65B Pin=R24-1
+Added Pin To Net: NetName=1V65B Pin=R26-2
+Added Pin To Net: NetName=1V65B Pin=U3-3
+Added Net: Name=1V65B
+Added Member To Class: ClassName=Sheet1 Member=Component R26 0
+Added Room: Name=Sheet1

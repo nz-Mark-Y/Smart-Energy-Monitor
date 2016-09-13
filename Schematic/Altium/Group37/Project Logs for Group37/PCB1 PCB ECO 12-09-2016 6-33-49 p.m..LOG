@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=1V65 Pin=R5-1
+Removed Pin From Net: NetName=1V65B Pin=R5-2
+Removed Pin From Net: NetName=1V65 Pin=U2-1
+Removed Pin From Net: NetName=1V65 Pin=U2-2
+Added Pin To Net: NetName=1V65B Pin=R5-1
+Added Pin To Net: NetName=1V65 Pin=R5-2
+Added Pin To Net: NetName=1V65B Pin=U2-1
+Added Pin To Net: NetName=1V65B Pin=U2-2
+Change Net Name : Old Net Name=1V65B New Net Name=1V65S
+Added Room: Name=Sheet1

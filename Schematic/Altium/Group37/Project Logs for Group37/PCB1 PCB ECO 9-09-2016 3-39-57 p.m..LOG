@@ -1,0 +1,4 @@
+Change Component DesignItemId : Designator=C2 Old DesignItemId=Cap Pol (22uF-100uF) New DesignItemId=Cap Pol (1uF-10uF)
+Change Component Footprint: Designator=C2 Old Footprint=CAP-RAD-3mm Pitch New Footprint=CAP-RAD-2mm Pitch
+Change Component Comment : Designator=C2 Old Comment=10u New Comment=*
+Added Room: Name=Sheet1

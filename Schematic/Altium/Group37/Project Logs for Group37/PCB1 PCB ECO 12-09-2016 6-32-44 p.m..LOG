@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=GND Pin=U3-3
+Removed Pin From Net: NetName=IADC Pin=U3-8
+Removed Pin From Net: NetName=NetC5_2 Pin=U3-9
+Removed Pin From Net: NetName=1V65 Pin=U3-10
+Added Component: Designator=R5(AXIAL-0.4)
+Added Pin To Net: NetName=1V65 Pin=R5-1
+Added Pin To Net: NetName=IADC Pin=U3-1
+Added Pin To Net: NetName=NetC5_2 Pin=U3-2
+Added Pin To Net: NetName=1V65 Pin=U3-3
+Added Pin To Net: NetName=GND Pin=U3-10
+Added Pin To Net: NetName=1V65B Pin=R5-2
+Added Net: Name=1V65B
+Added Pin To Net: NetName=NetU3_8 Pin=U3-8
+Added Pin To Net: NetName=NetU3_8 Pin=U3-9
+Added Net: Name=NetU3_8
+Added Member To Class: ClassName=Sheet1 Member=Component R5 0
+Added Room: Name=Sheet1
