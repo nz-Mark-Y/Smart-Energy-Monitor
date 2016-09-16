@@ -13,6 +13,13 @@
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 
 int main(void) {
+	//Power Calculations
+	float voltage[20] = { 1.65, 2.03, 2.38, 2.65, 2.81, 2.85, 2.76, 2.55, 2.25, 1.89, 1.50, 1.12, 0.81, 0.578, 0.46, 0.47, 0.61, 0.851, 1.15, 1.56 };
+	float current[20] = { 1.81, 2.12, 2.38, 2.56, 2.64, 2.62, 2.50, 2.29, 2.01, 1.69, 1.36, 1.07, 0.84, 0.69, 0.65, 0.71, 0.87, 1.11, 1.41 };
+	float power = calcPower(&voltage, &current);
+	power = roundf(power * 1000) / 1000;
+	//-----------------
+
 	uart_init();	
 	timer0_init();
 	float floatArray[4] = { 1234, 1235, 1236, 1237 }; //Array of values to send

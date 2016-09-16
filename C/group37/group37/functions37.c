@@ -46,3 +46,34 @@
 	if (position == 2) { output += 32; }
 	return output;
  }
+
+ //Calculates power from a voltage array and a current array
+ float calcPower(float (*voltage)[20], float (*current)[20]) {
+	float power = 0;
+	float newVoltage[39];
+	float newCurrent[39];
+	for (int i=0;i<39;i++) {
+		if (i%2 == 0) {
+			newVoltage[i] = (*voltage)[i/2];
+			if ((i == 0) || (i == 38)) {
+				newCurrent[i] = (*current)[i/2];
+			} else {
+				newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]);
+			}
+		} else {
+			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]);
+			newCurrent[i] = (*current)[(i-1)/2];
+		}
+	}
+	for (int i=0;i<39;i++) {
+		power = power + newVoltage[i]*newCurrent[i];
+	}
+	power = power / 39;
+	return power;
+ }
+
+ //Approximates a data value based on the two nearest data points
+ float linearApproximate(float higher, float lower) {
+	float approximation = (higher + lower) / 2;
+	return approximation;
+ }
