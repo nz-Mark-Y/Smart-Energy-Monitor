@@ -1,5 +1,5 @@
 Assembler report for lab3vhdl
-Tue Sep 20 21:45:06 2016
+Fri Aug 19 02:02:49 2016
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/The Dude/Desktop/UOA Year 2/Semester 2/Electeng 209/3 Lab Documents/Labs/all-labs/209/VHDL/Lab 2 vhdl/output_files/lab3vhdl.pof
+  5. Assembler Device Options: C:/Users/The Dude/Desktop/Lab 2 vhdl/output_files/lab3vhdl.pof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Sep 20 21:45:06 2016 ;
+; Assembler Status      ; Successful - Fri Aug 19 02:02:49 2016 ;
 ; Revision Name         ; lab3vhdl                              ;
 ; Top-level Entity Name ; lab3vhdl                              ;
 ; Family                ; MAX7000AE                             ;
@@ -74,24 +74,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                                ;
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                                ;
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/The Dude/Desktop/UOA Year 2/Semester 2/Electeng 209/3 Lab Documents/Labs/all-labs/209/VHDL/Lab 2 vhdl/output_files/lab3vhdl.pof ;
-+------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------+
+; Assembler Generated Files                                      ;
++----------------------------------------------------------------+
+; File Name                                                      ;
++----------------------------------------------------------------+
+; C:/Users/The Dude/Desktop/Lab 2 vhdl/output_files/lab3vhdl.pof ;
++----------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/The Dude/Desktop/UOA Year 2/Semester 2/Electeng 209/3 Lab Documents/Labs/all-labs/209/VHDL/Lab 2 vhdl/output_files/lab3vhdl.pof ;
-+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                                                           ;
-+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Device         ; EPM7064AELC44-10                                                                                                                                  ;
-; JTAG usercode  ; 0x00000000                                                                                                                                        ;
-; Checksum       ; 0x000C17CA                                                                                                                                        ;
-+----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/The Dude/Desktop/Lab 2 vhdl/output_files/lab3vhdl.pof ;
++----------------+-------------------------------------------------------------------------+
+; Option         ; Setting                                                                 ;
++----------------+-------------------------------------------------------------------------+
+; Device         ; EPM7064AELC44-10                                                        ;
+; JTAG usercode  ; 0x00000000                                                              ;
+; Checksum       ; 0x000C17CA                                                              ;
++----------------+-------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -100,13 +100,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Sep 20 21:45:04 2016
+    Info: Processing started: Fri Aug 19 02:02:47 2016
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off lab3vhdl -c lab3vhdl
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 401 megabytes
-    Info: Processing ended: Tue Sep 20 21:45:06 2016
+    Info: Peak virtual memory: 399 megabytes
+    Info: Processing ended: Fri Aug 19 02:02:49 2016
     Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
 
 
