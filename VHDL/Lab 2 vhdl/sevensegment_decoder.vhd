@@ -5,9 +5,9 @@ use ieee.std_logic_arith.all;
 
 entity sevensegment_decoder is
 	port(
-		bcd : in std_logic_vector(7 downto 0);
+		bcd : in std_logic_vector(7 downto 0); --input data frame
 		clk: in std_logic;
-		segment7 : out std_logic_vector(6 downto 0)
+		segment7 : out std_logic_vector(6 downto 0) --tells the 7 segment display what to output
 	);
 end sevensegment_decoder;
 
@@ -17,7 +17,7 @@ architecture behaviour of sevensegment_decoder is
 			process(bcd)
 				begin
 					if rising_edge(clk) then
-					digit(3 downto 0) <= bcd(3 downto 0);
+					digit(3 downto 0) <= bcd(3 downto 0);----extracts the part of the UART data frame that dictates what number will be displayed on a 7-segment display
 					case digit is
 						when "0000" => segment7 <= "0111111";--0
 						when "0001" => segment7 <= "0000110";--1

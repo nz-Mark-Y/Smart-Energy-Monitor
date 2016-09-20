@@ -5,8 +5,8 @@ use ieee.std_logic_unsigned.all;
 
 entity bcounter is
 	port (
-	clk, en_N, reset_N: in std_logic;
-	b_count: out std_logic_vector (3 downto 0)   
+	clk, en_N, reset_N: in std_logic;	--input
+	b_count: out std_logic_vector (3 downto 0) --output  
 	);
 end bcounter;
 
@@ -17,9 +17,9 @@ begin
 	begin
 		if (rising_edge(clk)) then
 			if (reset_N='1') then
-				b_count_temp <=B"0000"; 			 
+				b_count_temp <=B"0000"; 	--resets the counter		 
 			elsif (en_N ='1') then
-				b_count_temp <= b_count_temp + 1; 	 
+				b_count_temp <= b_count_temp + 1; --increments the counter	 
 			else
 				b_count_temp <= b_count_temp;
 			end if;

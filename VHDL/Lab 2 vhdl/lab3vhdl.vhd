@@ -3,9 +3,9 @@ use ieee.std_logic_1164.all;
 
 entity fsm is
 	port ( 
-		Rx, B, S7, S15, clk: in std_logic;
+		Rx, B, S7, S15, clk: in std_logic; --inputs
 		reset : in std_logic;
-		Sen, Ben, Sr, Br, B_shift: out std_logic; 
+		Sen, Ben, Sr, Br, B_shift: out std_logic; --outputs
 		control_disp : out std_logic
 		);
 		
@@ -17,7 +17,7 @@ architecture behaviour of fsm is
 	begin	
 		synchronous_process: process(clk)
 		begin	
-			if rising_edge(clk) then
+			if rising_edge(clk) then	--on the rising clock edge transition to the next state
 				CS <= NS;
 			end if;
 
@@ -25,26 +25,26 @@ architecture behaviour of fsm is
 		next_state_logic: process(CS, Rx, B, S7, S15)
 		begin
 			case CS is 
-				when idle =>
-					if Rx = '0' then
+				when idle =>	--idle state
+					if Rx = '0' then	--if the value of the input Rx signal changes to 0, transition to the start state, otherwise remain in the idle state
 						NS <= start;
 					else
 						NS <= idle;
 					end if;
-				when start =>
-					if S7 = '1' then  
+				when start =>	--start state
+					if S7 = '1' then --Once the s counter reaches 7, transition to the data state 
 						NS <= data;
 					else
 						NS <= start; 
 					end if;
-				when data =>
-					if ((B = '1') and (S15 = '1')) then
+				when data =>	--data state
+					if ((B = '1') and (S15 = '1')) then	--once the s count reaches 15 and the bit counter reaches 7, transition to the stop state, otherwise keep sampling data.
 						NS <= stop;
 					else
 						NS <= data;
 					end if;
-				when stop =>
-					if S15 = '0' then
+				when stop =>	--stop state
+					if S15 = '0' then --if the s counter reaches 15, transition to the idle state
 						NS <= stop;
 					else
 						NS <= idle;
@@ -63,7 +63,7 @@ architecture behaviour of fsm is
 			case CS is
 				when idle =>
 					if Rx = '0' then	
-						Sr <= '1';						
+						Sr <= '1'; --reset the s counter						
 					else						
 						Sr <= '0';						
 					end if;
@@ -72,9 +72,9 @@ architecture behaviour of fsm is
 				when start =>
 					if S7 = '1' then					
 						Sr <= '1'; 
-						Br <= '1'; 						
+						Br <= '1'; 	--reset the b counter					
 					else 					
-						Sen <= '1';						
+						Sen <= '1'; --increment the s counter						
 					end if;
 					control_disp <= '0';
 								
@@ -83,9 +83,9 @@ architecture behaviour of fsm is
 						Sr <= '1';
 						B_shift <= '1';						
 					elsif ((B = '0') AND (S15 = '1')) then					
-						B_shift <= '1';
+						B_shift <= '1'; --enable shift register
 						Sr <= '1';
-						Ben <= '1';						
+						Ben <= '1';	--Increment the bit counter						
 					else					
 						Sen <= '1';						
 					end if;
