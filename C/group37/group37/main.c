@@ -27,22 +27,19 @@ int main(void) {
 
 	while(1) {
 		float dataFloat = floatArray[floatIndex]; //Select the value to send
-	
-		unsigned int adcValue;
-		adcValue = adc_read_polling();
-		//adcValue = adc_read_interrupt();
-		float calculated = adc_calculation(adcValue);
-		dataFloat = calculated;
-
-		unsigned int dataInt;
 		uint8_t hasDecimal = 0;
 		uint8_t dataArray[4];
 		uint8_t index = 0;
-		uint8_t decimalPos = 0;
+		
+		//Reading from the ADC and calculating
+		unsigned int adcValue = adc_read_1();
+		float calculated = adc_calculation(adcValue);
+		dataFloat = calculated;
 
+		//Pre-wololo calculations and conversions
 		dataFloat = roundf(dataFloat * 1000) / 1000;
-		decimalPos = find_decimal(dataFloat); //Find the decimal place
-		dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
+		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
+		unsigned int dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
 		
 		//Splits the integer into an array of 4 integers, each represents the value of a digit, the position of that digit, and if it has a decimal place
 		for (int i=3;i>=0;i--) {

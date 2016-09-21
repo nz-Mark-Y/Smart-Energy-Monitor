@@ -81,22 +81,18 @@
  //Initialises the ADC
  void adc_init() {
 	DDRC = 0x00; //Set port c as input
-
-	//For polling
 	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN); //Set Prescaler to 128 and enable the ADC 
-
-	//For interrupts
  }
 
- unsigned int adc_read_polling() {
+ unsigned int adc_read_1() {
 	ADCSRA |= (1<<ADSC);
 	while ((ADCSRA & (1<<ADIF)) == 0);
 	unsigned int adcRead = ADC;
 	return adcRead;
  }
 
- unsigned int adc_read_interrupt() {
-	return 2;
+ unsigned int adc_read_2() {
+	return 0;
  }
 
  float adc_calculation(unsigned int adcValue) {
