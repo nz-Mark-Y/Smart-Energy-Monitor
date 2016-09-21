@@ -2,7 +2,7 @@
  * functions37.c
  *
  * Created: 10/08/2016 9:26:53 PM
- * Author: mark_
+ * Author: mark_ ft adil
  */ 
  #include <avr/io.h>
  #include "prototypes37.h"
@@ -99,4 +99,18 @@
 	float calculatedValue;
 	calculatedValue = (adcValue / 1000) * 3.3;
 	return calculatedValue; 
+ }
+ 
+ /*
+ This function figures out what the actual voltage being measured was based on reversing the process 
+ that the signal went through. Option 0 for voltage, 1 for regular current, 2 for high gain current
+ */
+ signed int voltage_real(unsigned int adcValue, unsigned int option) {
+	if (option == 0) {
+		return -(adcValue - 1.7)*98;
+	} else if (option == 1){
+		return 	-(adcValue - 1.63)/5.7;
+	}else{
+		return -(adcValue - 1.64)/32.93;
+	}
  }
