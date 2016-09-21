@@ -26,7 +26,7 @@ class MyData:
 def main():
     # Set up serial listening
     ser = serial.Serial(
-        port='COM6',\
+        port='COM7',\
         baudrate=9600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
@@ -84,13 +84,14 @@ def findLargestIndex(myArray):
 
 # Converting the data array back into the float that was measured by the micro
 def ololow(myArray):
+    print(myArray)
     value = 0
     decimalPlace = 3
     myArray[0] -= 96
     myArray[1] -= 64
     myArray[2] -= 32
     for i in range(0,4):
-        if myArray[i] > 16:
+        if myArray[i] >= 16:
             myArray[i] -= 16
             decimalPlace = i
     value = 1000*myArray[0] + 100*myArray[1] + 10*myArray[2] + myArray[3]
