@@ -22,7 +22,7 @@ int main(void) {
 
 	uart_init();	
 	timer0_init();
-	float floatArray[4] = { 1234, 1235, 1236, 1237 }; //Array of values to send
+	float floatArray[4] = { power, power, power, power }; //Array of values to send
 	unsigned int floatIndex = 0;
 
 	while(1) {

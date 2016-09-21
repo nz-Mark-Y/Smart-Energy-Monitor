@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EPM7064AEL44) Path("C:/Users/The Dude/Desktop/Lab 2 vhdl/output_files/") File("lab3vhdl.pof") MfrSpec(OpMask(3));
+		Device PartName(EPM7064AEL44) Path("C:/Users/mark_/Documents/ELECTENG 209/209/VHDL/Lab 2 vhdl/output_files/") File("lab3vhdl.pof") MfrSpec(OpMask(3));
 
 ChainEnd;
 
