@@ -20,7 +20,7 @@
  //Transmits the data
  void uart_transmit(uint8_t data) {
 	while(!((1<<UDRE0) && UCSR0A));	//When UDRE0 is empty, put data value into buffer to be sent
-		UDR0 = data;
+	UDR0 = data;
  }
 
  //Initializes the timer
@@ -76,4 +76,31 @@
  float linearApproximate(float higher, float lower) {
 	float approximation = (higher + lower) / 2;
 	return approximation;
+ }
+
+ //Initialises the ADC
+ void adc_init() {
+	DDRC = 0x00; //Set port c as input
+
+	//For polling
+	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN); //Set Prescaler to 128 and enable the ADC 
+
+	//For interrupts
+ }
+
+ unsigned int adc_read_polling() {
+	ADCSRA |= (1<<ADSC);
+	while ((ADCSRA & (1<<ADIF)) == 0);
+	unsigned int adcRead = ADC;
+	return adcRead;
+ }
+
+ unsigned int adc_read_interrupt() {
+	return 2;
+ }
+
+ float adc_calculation(unsigned int adcValue) {
+	float calculatedValue;
+	calculatedValue = (adcValue / 1000) * 3.3;
+	return calculatedValue; 
  }

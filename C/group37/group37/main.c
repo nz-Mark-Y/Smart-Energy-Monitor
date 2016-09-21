@@ -13,26 +13,34 @@
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 
 int main(void) {
-	//Power Calculations
+	/* ADC Prelab Task
 	float voltage[20] = { 1.65, 2.03, 2.38, 2.65, 2.81, 2.85, 2.76, 2.55, 2.25, 1.89, 1.50, 1.12, 0.81, 0.578, 0.46, 0.47, 0.61, 0.851, 1.15, 1.56 };
 	float current[20] = { 1.81, 2.12, 2.38, 2.56, 2.64, 2.62, 2.50, 2.29, 2.01, 1.69, 1.36, 1.07, 0.84, 0.69, 0.65, 0.71, 0.87, 1.11, 1.41 };
 	float power = calcPower(&voltage, &current);
-	power = roundf(power * 1000) / 1000;
-	//-----------------
+	*/
 
+	adc_init();
 	uart_init();	
 	timer0_init();
-	float floatArray[4] = { power, power, power, power }; //Array of values to send
+	float floatArray[4] = { 1234, 1235, 1236, 1237 }; //Array of values to send
 	unsigned int floatIndex = 0;
 
 	while(1) {
 		float dataFloat = floatArray[floatIndex]; //Select the value to send
+	
+		unsigned int adcValue;
+		adcValue = adc_read_polling();
+		//adcValue = adc_read_interrupt();
+		float calculated = adc_calculation(adcValue);
+		dataFloat = calculated;
+
 		unsigned int dataInt;
 		uint8_t hasDecimal = 0;
 		uint8_t dataArray[4];
 		uint8_t index = 0;
 		uint8_t decimalPos = 0;
 
+		dataFloat = roundf(dataFloat * 1000) / 1000;
 		decimalPos = find_decimal(dataFloat); //Find the decimal place
 		dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
 		
