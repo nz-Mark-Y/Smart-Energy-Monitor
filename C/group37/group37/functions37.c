@@ -82,6 +82,7 @@
  void adc_init() {
 	DDRC = 0x00; //Set port c as input
 	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN); //Set Prescaler to 128 and enable the ADC 
+	ADMUX |= (1<<REFS0);
  }
 
  unsigned int adc_read_1() {
@@ -97,7 +98,8 @@
 
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
-	calculatedValue = (adcValue / 1000) * 3.3;
+	//adcValue++;
+	calculatedValue = ((float)adcValue / 1023) * 5;
 	return calculatedValue; 
  }
  
