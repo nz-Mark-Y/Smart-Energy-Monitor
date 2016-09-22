@@ -98,7 +98,6 @@
 
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
-	//adcValue++;
 	calculatedValue = ((float)adcValue / 1023) * 5;
 	return calculatedValue; 
  }

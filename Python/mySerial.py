@@ -84,7 +84,6 @@ def findLargestIndex(myArray):
 
 # Converting the data array back into the float that was measured by the micro
 def ololow(myArray):
-    print(myArray)
     value = 0
     decimalPlace = 3
     myArray[0] -= 96

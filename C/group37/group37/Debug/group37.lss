@@ -296,7 +296,6 @@ Disassembly of section .text:
 
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
-	//adcValue++;
 	calculatedValue = ((float)adcValue / 1023) * 5;
  212:	bc 01       	movw	r22, r24
  214:	80 e0       	ldi	r24, 0x00	; 0
