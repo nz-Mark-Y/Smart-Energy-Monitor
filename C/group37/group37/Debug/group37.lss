@@ -153,9 +153,9 @@ Disassembly of section .text:
  10e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000112 <uart_init>:
-	return adcRead;
  }
 
+ //Reads from C0 and C5 alternately
  unsigned int adc_read_2() {
 	return 0;
  }
@@ -294,6 +294,7 @@ Disassembly of section .text:
 
 00000212 <adc_calculation>:
 
+ //Converts an ADC integer into the actual voltage measured by the ADC pin
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
 	calculatedValue = ((float)adcValue / 1023) * 5;

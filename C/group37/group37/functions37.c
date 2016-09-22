@@ -52,23 +52,23 @@
 	float power = 0;
 	float newVoltage[39];
 	float newCurrent[39];
-	for (int i=0;i<39;i++) {
+	for (int i=0;i<39;i++) { //Creating 2 arrays of 39 elements for voltage and current
 		if (i%2 == 0) {
 			newVoltage[i] = (*voltage)[i/2];
 			if ((i == 0) || (i == 38)) {
 				newCurrent[i] = (*current)[i/2];
 			} else {
-				newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]);
+				newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]); //For even numbered elements, current is approximated
 			}
 		} else {
-			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]);
+			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
 			newCurrent[i] = (*current)[(i-1)/2];
 		}
 	}
-	for (int i=0;i<39;i++) {
+	for (int i=0;i<39;i++) { //Sum the product of current and voltage for each time step
 		power = power + newVoltage[i]*newCurrent[i];
 	}
-	power = power / 39;
+	power = power / 39; //Divide by the number of elements
 	return power;
  }
 
@@ -85,17 +85,20 @@
 	ADMUX |= (1<<REFS0);
  }
 
+ //Reads from ADC and returns and integer between 0 and 1023 inclusive
  unsigned int adc_read_1() {
-	ADCSRA |= (1<<ADSC);
-	while ((ADCSRA & (1<<ADIF)) == 0);
+	ADCSRA |= (1<<ADSC); //Start conversion
+	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
 	unsigned int adcRead = ADC;
 	return adcRead;
  }
 
+ //Reads from C0 and C5 alternately
  unsigned int adc_read_2() {
 	return 0;
  }
 
+ //Converts an ADC integer into the actual voltage measured by the ADC pin
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
 	calculatedValue = ((float)adcValue / 1023) * 5;
@@ -108,10 +111,10 @@
  */
  signed int voltage_real(unsigned int adcValue, unsigned int option) {
 	if (option == 0) {
-		return -(adcValue - 1.7)*98;
-	} else if (option == 1){
-		return 	-(adcValue - 1.63)/5.7;
-	}else{
-		return -(adcValue - 1.64)/32.93;
+		return -(adcValue - 1.7) * 98;
+	} else if (option == 1) {
+		return -(adcValue - 1.63) / 5.7;
+	} else {
+		return -(adcValue - 1.64) / 32.93;
 	}
  }
