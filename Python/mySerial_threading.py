@@ -10,6 +10,7 @@
 import serial
 import json
 import threading
+import sys
 from firebase import firebase
 
 # Class to store each data value along with a timestamp and which data number it is
@@ -24,14 +25,18 @@ class MyData:
             sort_keys=True, indent=4)
     
 # Set up serial listening
-ser = serial.Serial(
-    port='COM7',\
-    baudrate=9600,\
-    parity=serial.PARITY_NONE,\
-    stopbits=serial.STOPBITS_ONE,\
-    bytesize=serial.EIGHTBITS,\
-        timeout=0)
-print("connected to: " + ser.portstr)
+try:
+    ser = serial.Serial(
+        port='COM7',\
+        baudrate=9600,\
+        parity=serial.PARITY_NONE,\
+        stopbits=serial.STOPBITS_ONE,\
+        bytesize=serial.EIGHTBITS,\
+            timeout=0)
+    print("connected to: " + ser.portstr)
+except:
+    print("Could not open serial port COM7. Check the COM port listings in Device Manager.")
+    sys.exit()
 
 #Set up firebase and clear old data
 firebaseObject = firebase.FirebaseApplication('https://electeng209-520f4.firebaseio.com/', authentication=None)
@@ -41,6 +46,7 @@ firebaseObject.delete('/data', None)
 dataIn = []
 
 def readData(ser):
+    print("Reading data...")
     # Start reading data from serial port
     while True:
         while True:
