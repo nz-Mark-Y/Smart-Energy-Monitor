@@ -82,7 +82,7 @@
  void adc_init() {
 	DDRC = 0x00; //Set port c as input
 	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN); //Set Prescaler to 128 and enable the ADC 
-	ADMUX |= (1<<REFS0);
+	ADMUX |= (1<<REFS0); //Set reference voltage to VCC
  }
 
  //Reads from ADC and returns and integer between 0 and 1023 inclusive

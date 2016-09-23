@@ -13,35 +13,20 @@
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 
 int main(void) {
-	/* ADC Prelab Task
-	float voltage[20] = { 1.65, 2.03, 2.38, 2.65, 2.81, 2.85, 2.76, 2.55, 2.25, 1.89, 1.50, 1.12, 0.81, 0.578, 0.46, 0.47, 0.61, 0.851, 1.15, 1.56 };
-	float current[20] = { 1.81, 2.12, 2.38, 2.56, 2.64, 2.62, 2.50, 2.29, 2.01, 1.69, 1.36, 1.07, 0.84, 0.69, 0.65, 0.71, 0.87, 1.11, 1.41 };
-	float power = calcPower(&voltage, &current);
-	*/
-
 	adc_init();
 	uart_init();	
 	timer0_init();
-	float floatArray[4] = { 1234, 1235, 1236, 1237 }; //Array of values to send
-	unsigned int floatIndex = 0;
 
 	while(1) {
-		float dataFloat = floatArray[floatIndex]; //Select the value to send
 		uint8_t hasDecimal = 0;
 		uint8_t dataArray[4];
 		uint8_t index = 0;
 		
-		//Reading from the ADC and calculating
+		//Reading from the ADC, calculating and converting
 		unsigned int adcValue1;
 		unsigned int adcValue2;
 		adc_read_2(&adcValue1, &adcValue2);
-		if (floatIndex%2 == 0) {
-			dataFloat = adc_calculation(adcValue1);
-		} else {
-			dataFloat = adc_calculation(adcValue2);
-		}
-
-		//Pre-wololo calculations and conversions
+		float dataFloat = adc_calculation(adcValue1);
 		dataFloat = roundf(dataFloat * 1000) / 1000;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
 		unsigned int dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
@@ -57,7 +42,7 @@ int main(void) {
 			dataInt = dataInt/10;
 		}
 
-		//Transmits data until we get TCNT0 = 191 twenty times 
+		//Transmits data until we get TCNT0 = 191 fifty times 
 		while (1) {
 			uint8_t data = dataArray[index];	//Get the integer to send	
 			uart_transmit(data);
@@ -77,12 +62,6 @@ int main(void) {
 					counter++;
 				}
 			}
-		}
-		//Select next float to send
-		if (floatIndex == 3) { 
-			floatIndex = 0;
-		} else {
-			floatIndex++;
 		}
 	}
 	return 0;
