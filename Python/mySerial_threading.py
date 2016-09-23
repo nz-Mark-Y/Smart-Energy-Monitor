@@ -27,7 +27,7 @@ class MyData:
 # Set up serial listening
 try:
     ser = serial.Serial(
-        port='COM7',\
+        port='COM6',\
         baudrate=9600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
@@ -35,7 +35,7 @@ try:
             timeout=0)
     print("connected to: " + ser.portstr)
 except:
-    print("Could not open serial port COM7. Check the COM port listings in Device Manager.")
+    print("Could not open serial port COM6. Check the COM port listings in Device Manager.")
     sys.exit()
 
 #Set up firebase and clear old data

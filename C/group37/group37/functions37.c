@@ -93,9 +93,16 @@
 	return adcRead;
  }
 
- //Reads from C0 and C5 alternately
- unsigned int adc_read_2() {
-	return 0;
+ //Reads from C0 and C2 alternately
+ void adc_read_2(unsigned int* adcValue1, unsigned int* adcValue2) {
+	ADMUX &= ~(1<<MUX1);
+	ADCSRA |= (1<<ADSC); //Start conversion
+	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
+	(*adcValue1) = ADC;
+	ADMUX |= (1<<MUX1);
+	ADCSRA |= (1<<ADSC); //Start conversion
+	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
+	(*adcValue2) = ADC;
  }
 
  //Converts an ADC integer into the actual voltage measured by the ADC pin

@@ -32,9 +32,14 @@ int main(void) {
 		uint8_t index = 0;
 		
 		//Reading from the ADC and calculating
-		unsigned int adcValue = adc_read_1();
-		float calculated = adc_calculation(adcValue);
-		dataFloat = calculated;
+		unsigned int adcValue1;
+		unsigned int adcValue2;
+		adc_read_2(&adcValue1, &adcValue2);
+		if (floatIndex%2 == 0) {
+			dataFloat = adc_calculation(adcValue1);
+		} else {
+			dataFloat = adc_calculation(adcValue2);
+		}
 
 		//Pre-wololo calculations and conversions
 		dataFloat = roundf(dataFloat * 1000) / 1000;

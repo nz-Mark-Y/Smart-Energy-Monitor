@@ -17,7 +17,7 @@ float calcPower(float (*voltage)[20], float (*current)[20]);
 float linearApproximate(float higher, float lower);
 void adc_init();
 unsigned int adc_read_1();
-unsigned int adc_read_2();
+void adc_read_2(unsigned int* adcValue1, unsigned int* adcValue2);
 float adc_calculation(unsigned int adcValue);
 
 #endif /* PROTOTYPES37_H_ */
