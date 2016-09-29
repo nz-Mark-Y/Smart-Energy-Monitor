@@ -25,8 +25,9 @@
 
  //Initializes the timer
  void timer0_init() {
-	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
-	TCNT0 = 0; //Initialize timer0
+	OCR1A = 0x3D09;
+	TCCR1B |= (1<<CS12)|(1<<CS10)|(1<<WGM12); //Prescaler of 1024
+	TIMSK1 |= (1 << OCIE1A);	
  }
  
  //Finds the decimal place in the float

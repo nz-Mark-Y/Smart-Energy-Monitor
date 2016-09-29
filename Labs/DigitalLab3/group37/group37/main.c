@@ -7,25 +7,48 @@
 #include <avr/io.h>
 #include "prototypes37.h"
 #define F_CPU 16000000UL
+#include <util/delay.h>
+#include <avr/interrupt.h>
 
-volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
+volatile uint16_t countCheck = 1; 
 
-int main(void) {	
+int main(void) {
+	sei();	
 	timer0_init();
-	DDRB |= (1<<PORTB5);
+	DDRB |= (1<<5);
+	DDRB &= ~(1<<7);
+	
+	PORTB &= ~(1<<5);
 
 	while (1) {	
-		
-		if(TCNT0>=156) {
+		if (PINB & (1<<PORTB7)) {
+			
+		} else {
+			if (countCheck == 1) {
+				countCheck = 2;
+				OCR1A = 0x7C6A;
+			} else {
+				countCheck = 1;
+				OCR1A = 0x3D08;
+			}
+			_delay_ms(100);
+		}
+
+		/* 
+		if (TCNT0 >= 156) {
 			TCNT0 = 0;
 			if (counter == 100) {
-				counter = 0;
 				PORTB ^= (1<<5);
-				break;
+				counter = 0;	
 			} else {
 				counter++;
-			}	
+			}
 		}
+		*/
 	}
 	return 0;
+}
+
+ISR (TIMER1_COMPA_vect) {
+	PORTB ^= (1<<5);
 }
