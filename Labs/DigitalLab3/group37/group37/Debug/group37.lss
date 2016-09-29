@@ -84,12 +84,12 @@ Disassembly of section .text:
 00000092 <__bad_interrupt>:
   92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000096 <timer0_init>:
+00000096 <timer1_init>:
 	UDR0 = data;
  }
 
  //Initializes the timer
- void timer0_init() {
+ void timer1_init() {
 	OCR1A = 0x3D09;
   96:	89 e0       	ldi	r24, 0x09	; 9
   98:	9d e3       	ldi	r25, 0x3D	; 61
@@ -117,8 +117,8 @@ volatile uint16_t countCheck = 1;
 int main(void) {
 	sei();	
   b8:	78 94       	sei
-	timer0_init();
-  ba:	0e 94 4b 00 	call	0x96	; 0x96 <timer0_init>
+	timer1_init();
+  ba:	0e 94 4b 00 	call	0x96	; 0x96 <timer1_init>
 	DDRB |= (1<<5);
   be:	25 9a       	sbi	0x04, 5	; 4
 	DDRB &= ~(1<<7);
@@ -129,12 +129,12 @@ int main(void) {
 		} else {
 			if (countCheck == 1) {
 				countCheck = 2;
-				OCR1A = 0x7C6A;
+				OCR1A = 0x7C6A; // Set timer to count to 2 seconds
 			} else {
 				countCheck = 1;
   c4:	41 e0       	ldi	r20, 0x01	; 1
   c6:	50 e0       	ldi	r21, 0x00	; 0
-				OCR1A = 0x3D08;
+				OCR1A = 0x3D08; // Set timer to count to 1 second
   c8:	e8 e8       	ldi	r30, 0x88	; 136
   ca:	f0 e0       	ldi	r31, 0x00	; 0
   cc:	28 e0       	ldi	r18, 0x08	; 8
@@ -147,7 +147,7 @@ int main(void) {
 				countCheck = 2;
   d0:	a2 e0       	ldi	r26, 0x02	; 2
   d2:	b0 e0       	ldi	r27, 0x00	; 0
-				OCR1A = 0x7C6A;
+				OCR1A = 0x7C6A; // Set timer to count to 2 seconds
   d4:	6a e6       	ldi	r22, 0x6A	; 106
   d6:	7c e7       	ldi	r23, 0x7C	; 124
 	DDRB &= ~(1<<7);
@@ -168,7 +168,7 @@ int main(void) {
 				countCheck = 2;
   e8:	b0 93 01 01 	sts	0x0101, r27	; 0x800101 <__data_start+0x1>
   ec:	a0 93 00 01 	sts	0x0100, r26	; 0x800100 <__data_start>
-				OCR1A = 0x7C6A;
+				OCR1A = 0x7C6A; // Set timer to count to 2 seconds
   f0:	71 83       	std	Z+1, r23	; 0x01
   f2:	60 83       	st	Z, r22
   f4:	06 c0       	rjmp	.+12     	; 0x102 <main+0x4a>
@@ -176,7 +176,7 @@ int main(void) {
 				countCheck = 1;
   f6:	50 93 01 01 	sts	0x0101, r21	; 0x800101 <__data_start+0x1>
   fa:	40 93 00 01 	sts	0x0100, r20	; 0x800100 <__data_start>
-				OCR1A = 0x3D08;
+				OCR1A = 0x3D08; // Set timer to count to 1 second
   fe:	31 83       	std	Z+1, r19	; 0x01
  100:	20 83       	st	Z, r18
 	#else
@@ -197,7 +197,7 @@ int main(void) {
  114:	e1 cf       	rjmp	.-62     	; 0xd8 <main+0x20>
 
 00000116 <__vector_11>:
-		}
+		*/
 	}
 	return 0;
 }

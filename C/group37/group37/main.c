@@ -25,8 +25,14 @@ int main(void) {
 		//Reading from the ADC, calculating and converting
 		unsigned int adcValue1;
 		unsigned int adcValue2;
+		signed int voltage;
+		signed int current;
 		adc_read_2(&adcValue1, &adcValue2);
+		voltage = voltage_real(adcValue1, 0);
+		current = voltage_real(adcValue2, 0);
 		float dataFloat = adc_calculation(adcValue1);
+		
+		//float dataFloat = 6969;
 		dataFloat = roundf(dataFloat * 1000) / 1000;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
 		unsigned int dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
@@ -53,7 +59,7 @@ int main(void) {
 				index = 0;
 			}
 			//Polling mechanism
-			if(TCNT0>=211) {
+			if(TCNT0>=156) {
 				TCNT0 = 0;
 				if (counter == 50) {
 					counter = 0;

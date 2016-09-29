@@ -19,5 +19,6 @@ void adc_init();
 unsigned int adc_read_1();
 void adc_read_2(unsigned int* adcValue1, unsigned int* adcValue2);
 float adc_calculation(unsigned int adcValue);
+signed int voltage_real(unsigned int adcValue, unsigned int option);
 
 #endif /* PROTOTYPES37_H_ */

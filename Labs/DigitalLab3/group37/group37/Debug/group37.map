@@ -404,9 +404,9 @@ END GROUP
                 0x00000092                __vector_20
                 0x00000096                . = ALIGN (0x2)
  *(.text.*)
- .text.timer0_init
+ .text.timer1_init
                 0x00000096       0x22 functions37.o
-                0x00000096                timer0_init
+                0x00000096                timer1_init
  .text.main     0x000000b8       0x5e main.o
                 0x000000b8                main
  .text.__vector_11

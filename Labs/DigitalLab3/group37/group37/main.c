@@ -11,10 +11,11 @@
 #include <avr/interrupt.h>
 
 volatile uint16_t countCheck = 1; 
+volatile uint16_t adc_value = 1;
 
 int main(void) {
 	sei();	
-	timer0_init();
+	timer1_init();
 	DDRB |= (1<<5);
 	DDRB &= ~(1<<7);
 	
@@ -26,12 +27,12 @@ int main(void) {
 		} else {
 			if (countCheck == 1) {
 				countCheck = 2;
-				OCR1A = 0x7C6A;
+				OCR1A = 0x7C6A; // Set timer to count to 2 seconds
 			} else {
 				countCheck = 1;
-				OCR1A = 0x3D08;
+				OCR1A = 0x3D08; // Set timer to count to 1 second
 			}
-			_delay_ms(100);
+			_delay_ms(100); // Debounce delay
 		}
 
 		/* 

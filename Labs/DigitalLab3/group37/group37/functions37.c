@@ -24,10 +24,10 @@
  }
 
  //Initializes the timer
- void timer0_init() {
+ void timer1_init() {
 	OCR1A = 0x3D09;
 	TCCR1B |= (1<<CS12)|(1<<CS10)|(1<<WGM12); //Prescaler of 1024
-	TIMSK1 |= (1 << OCIE1A);	
+	TIMSK1 |= (1<<OCIE1A);	
  }
  
  //Finds the decimal place in the float
@@ -82,16 +82,18 @@
  //Initialises the ADC
  void adc_init() {
 	DDRC = 0x00; //Set port c as input
-	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN); //Set Prescaler to 128 and enable the ADC 
+	ADCSRA |= (1<<ADPS0)|(1<<ADPS1)|(1<<ADPS2)|(1<<ADEN)|(1<<ADIE); //Set Prescaler to 128 and enable the ADC 
 	ADMUX |= (1<<REFS0); //Set reference voltage to VCC
  }
 
  //Reads from ADC and returns and integer between 0 and 1023 inclusive
  unsigned int adc_read_1() {
 	ADCSRA |= (1<<ADSC); //Start conversion
-	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
-	unsigned int adcRead = ADC;
-	return adcRead;
+	while (1); 
+ }
+
+ ISR(ADC_vect) {
+	adc_value = ADC;
  }
 
  //Reads from C0 and C2 alternately
