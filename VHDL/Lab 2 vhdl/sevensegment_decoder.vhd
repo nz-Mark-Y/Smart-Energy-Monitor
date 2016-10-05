@@ -29,7 +29,9 @@ architecture behaviour of sevensegment_decoder is
 						when "0111" => segment7 <= "0000111";--7
 						when "1000" => segment7 <= "1111111";--8
 						when "1001" => segment7 <= "1101111";--9
-						
+						when "1101" => segment7 <= "1110111" --A
+						when "1110" => segment7 <= "0111110" --V
+						when "1111" => segment7 <= "1110011" --P
 						when others => segment7 <= "0000000"; 
 					end case;
 					end if;
