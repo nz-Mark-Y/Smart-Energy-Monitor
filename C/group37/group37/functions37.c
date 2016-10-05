@@ -71,6 +71,16 @@
 	return power;
  }
 
+ //Calculates RMS value of voltage
+ float calcVoltageRMS(float (*voltage)[20]) {
+	return 69.6;
+ }
+
+ //Calculates RMS value of current
+ float calcCurrentRMS(float (*current)[20]) {
+	 return 42.0;
+ }
+
  //Approximates a data value based on the two nearest data points
  float linearApproximate(float higher, float lower) {
 	float approximation = (higher + lower) / 2;
@@ -97,11 +107,11 @@
 
   //Reads from ADC and returns and integer between 0 and 1023 inclusive
  unsigned int adc_read_current(unsigned int highLow) {
-	if (highLow == 1) { // High gain current
+	if (highLow == 1) { //High gain current
 		ADMUX |= (1<<MUX0);
 		ADMUX &= ~(1<<MUX1);
 		ADMUX |= (1<<MUX2);
-	} else { // Low gain current
+	} else { //Low gain current
 		ADMUX &= ~(1<<MUX0);
 		ADMUX &= ~(1<<MUX1);
 		ADMUX &= ~(1<<MUX2);

@@ -14,6 +14,8 @@ void timer0_init();
 unsigned int find_decimal(float data); 
 unsigned int wololo(uint8_t input, uint8_t position, uint8_t decimal);
 float calcPower(float (*voltage)[20], float (*current)[20]);
+float calcVoltageRMS(float (*voltage)[20]);
+float calcCurrentRMS(float (*current)[20]); 
 float linearApproximate(float higher, float lower);
 void adc_init();
 unsigned int adc_read_voltage();

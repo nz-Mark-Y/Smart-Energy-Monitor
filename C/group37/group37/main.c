@@ -39,14 +39,12 @@ int main(void) {
 				currentArray[(i-1)/2] = current;
 			}
 		}
-		float power = calcPower(&voltageArray, &currentArray);
-		/*
-		if ((displayCount%10 < 4) && (displayCount%10 > 0)) { float dataFloat = power; } 
-		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { float dataFloat = power; }
-		else if (displayCount%10 > 7) { float dataFloat = power;}
-		else { float dataFloat = 0; }
-		*/
-		float dataFloat;
+		float dataFloat = 0;
+
+		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataFloat = calcPower(&voltageArray, &currentArray); } 
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataFloat = calcVoltageRMS(&voltageArray); }
+		else if (displayCount%10 > 6) { dataFloat = calcCurrentRMS(&currentArray); }
+
 		dataFloat = roundf(dataFloat * 100) / 100;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
 		unsigned int dataInt = (int)(dataFloat * pow(10, 2-decimalPos) + 0.5); //Convert to decimal for array conversion
@@ -61,10 +59,9 @@ int main(void) {
 			dataArray[i] = wololo(dataInt%10, i, hasDecimal);
 			dataInt = dataInt/10;
 		}
-		if ((displayCount%10 < 4) && (displayCount%10 > 0)) { dataArray[3] = 15; }
-		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 15; }
-		else if (displayCount%10 > 7) { dataArray[3] = 15; }
-		else { dataArray[3] = 12; }
+		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataArray[3] = 15; }
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 14; }
+		else if (displayCount%10 > 6) { dataArray[3] = 13; }
 
 		//Transmits data until we get TCNT0 = 191 fifty times 
 		while (1) {
