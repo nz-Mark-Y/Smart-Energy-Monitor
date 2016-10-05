@@ -16,6 +16,7 @@ int main(void) {
 	adc_init();
 	uart_init();	
 	timer0_init();
+	uint32_t displayCount = 0;
 
 	while(1) {
 		uint8_t hasDecimal = 0;
@@ -23,23 +24,36 @@ int main(void) {
 		uint8_t index = 0;
 		
 		//Reading from the ADC, calculating and converting
-		unsigned int adcValue1;
-		unsigned int adcValue2;
-		signed int voltage;
-		signed int current;
-		adc_read_2(&adcValue1, &adcValue2);
-		voltage = voltage_real(adcValue1, 0);
-		current = voltage_real(adcValue2, 0);
-		float dataFloat = adc_calculation(adcValue1);
-		
-		//float dataFloat = 6969;
-		dataFloat = roundf(dataFloat * 1000) / 1000;
+		float voltageArray[20];
+		float currentArray[20];
+		for (int i=0;i<39;i++) {
+			if (i%2 == 0) {
+				unsigned int adcValue = adc_read_voltage();
+				float adcVoltage = adc_calculation(adcValue);
+				float voltage = voltage_real(adcVoltage, 0);
+				voltageArray[i/2] = voltage;
+			} else {
+				unsigned int adcValue = adc_read_current(0); // Regular Current
+				float adcCurrent = adc_calculation(adcValue);
+				float current = voltage_real(adcCurrent, 1); // Regular Current
+				currentArray[(i-1)/2] = current;
+			}
+		}
+		float power = calcPower(&voltageArray, &currentArray);
+		/*
+		if ((displayCount%10 < 4) && (displayCount%10 > 0)) { float dataFloat = power; } 
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { float dataFloat = power; }
+		else if (displayCount%10 > 7) { float dataFloat = power;}
+		else { float dataFloat = 0; }
+		*/
+		float dataFloat;
+		dataFloat = roundf(dataFloat * 100) / 100;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
-		unsigned int dataInt = (int)(dataFloat * pow(10, 3-decimalPos) + 0.5); //Convert to decimal for array conversion
+		unsigned int dataInt = (int)(dataFloat * pow(10, 2-decimalPos) + 0.5); //Convert to decimal for array conversion
 		
 		//Splits the integer into an array of 4 integers, each represents the value of a digit, the position of that digit, and if it has a decimal place
-		for (int i=3;i>=0;i--) {
-			if ((decimalPos == i) && ((3-decimalPos) > 0)) {
+		for (int i=2;i>=0;i--) {
+			if ((decimalPos == i) && ((2-decimalPos) > 0)) {
 				hasDecimal = 1;
 			} else {
 				hasDecimal = 0;
@@ -47,6 +61,10 @@ int main(void) {
 			dataArray[i] = wololo(dataInt%10, i, hasDecimal);
 			dataInt = dataInt/10;
 		}
+		if ((displayCount%10 < 4) && (displayCount%10 > 0)) { dataArray[3] = 15; }
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 15; }
+		else if (displayCount%10 > 7) { dataArray[3] = 15; }
+		else { dataArray[3] = 12; }
 
 		//Transmits data until we get TCNT0 = 191 fifty times 
 		while (1) {
@@ -69,6 +87,7 @@ int main(void) {
 				}
 			}
 		}
+		displayCount++;
 	}
 	return 0;
 }

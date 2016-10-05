@@ -33,8 +33,7 @@
  unsigned int find_decimal(float data) {
 	if (data < 10) { return 0; }
 	if (data < 100) { return 1; }
-	if (data < 1000) { return 2; }
-	return 3;
+	return 2;
  }
 
  //Converts our parameters into the value to send
@@ -86,23 +85,31 @@
  }
 
  //Reads from ADC and returns and integer between 0 and 1023 inclusive
- unsigned int adc_read_1() {
+ unsigned int adc_read_voltage() {
+	ADMUX &= ~(1<<MUX0);
+	ADMUX &= ~(1<<MUX1);
+	ADMUX &= ~(1<<MUX2);
 	ADCSRA |= (1<<ADSC); //Start conversion
 	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
 	unsigned int adcRead = ADC;
 	return adcRead;
  }
 
- //Reads from C0 and C2 alternately
- void adc_read_2(unsigned int* adcValue1, unsigned int* adcValue2) {
-	ADMUX &= ~(1<<MUX1);
+  //Reads from ADC and returns and integer between 0 and 1023 inclusive
+ unsigned int adc_read_current(unsigned int highLow) {
+	if (highLow == 1) { // High gain current
+		ADMUX |= (1<<MUX0);
+		ADMUX &= ~(1<<MUX1);
+		ADMUX |= (1<<MUX2);
+	} else { // Low gain current
+		ADMUX &= ~(1<<MUX0);
+		ADMUX &= ~(1<<MUX1);
+		ADMUX &= ~(1<<MUX2);
+	}
 	ADCSRA |= (1<<ADSC); //Start conversion
 	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
-	(*adcValue1) = ADC;
-	ADMUX |= (1<<MUX1);
-	ADCSRA |= (1<<ADSC); //Start conversion
-	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
-	(*adcValue2) = ADC;
+	unsigned int adcRead = ADC;
+	return adcRead;
  }
 
  //Converts an ADC integer into the actual voltage measured by the ADC pin
@@ -116,7 +123,7 @@
  This function figures out what the actual voltage being measured was based on reversing the process 
  that the signal went through. Option 0 for voltage, 1 for regular current, 2 for high gain current
  */
- signed int voltage_real(unsigned int adcValue, unsigned int option) {
+ float voltage_real(float adcValue, unsigned int option) {
 	if (option == 0) {
 		return -(adcValue - 1.7) * 98;
 	} else if (option == 1) {
