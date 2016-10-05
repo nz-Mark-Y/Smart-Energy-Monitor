@@ -16,8 +16,9 @@ from firebase import firebase
 # Class to store each data value along with a timestamp and which data number it is
 class MyData:
     numberCount = 0
-    def __init__(self, value):
+    def __init__(self, value, unit):
         self.value = value
+        self.unit = unit
         MyData.numberCount += 1
         self.number = MyData.numberCount
     def toJSON(self):
@@ -35,7 +36,7 @@ try:
             timeout=0)
     print("connected to: " + ser.portstr)
 except:
-    print("Could not open serial port COM6. Check the COM port listings in Device Manager.")
+    print("Could not open serial port COM7. Check the COM port listings in Device Manager.")
     sys.exit()
 
 #Set up firebase and clear old data
@@ -72,9 +73,15 @@ def handleData(dataIn):
                     for i in range(largestIndex,largestIndex+4):
                         dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
                     value = ololow(dataArray) # Convert the data array back into the data sent
-                    dataToSend = MyData(value) # Create a MyData object to upload to firebase as JSON
+                    if dataArray[3] == 15:
+                        unit = 'W'
+                    elif dataArray[3] == 14:
+                        unit = 'V'
+                    else:
+                        unit = 'A'
+                    dataToSend = MyData(value, unit) # Create a MyData object to upload to firebase as JSON
                     result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
-                    print(dataToSend.value) # For debugging purposes
+                    print(dataToSend.value, dataToSend.unit) # For debugging purposes
                     #===========================
                     # Put graphing in here
                     #===========================
@@ -102,8 +109,8 @@ def ololow(myArray):
         if myArray[i] >= 16:
             myArray[i] -= 16
             decimalPlace = i
-    value = 1000*myArray[0] + 100*myArray[1] + 10*myArray[2] + myArray[3]
-    value = value / (10**(3-decimalPlace))
+    value = 100*myArray[0] + 10*myArray[1] + myArray[2]
+    value = value / (10**(2-decimalPlace))
     return value
 
 thread = threading.Thread(target=readData, args=(ser,))
