@@ -31,7 +31,7 @@
 
  //Initializes the external interrupt INT0
  void int_init() {
-	EICRA |= (1<<ISC00);
+	EICRA |= (1<<ISC00)|(1<<ISC01);
 	EIMSK |= (1<<INT0);
  }
  

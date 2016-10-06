@@ -194,7 +194,7 @@ Disassembly of section .text:
      14c:	e9 e6       	ldi	r30, 0x69	; 105
      14e:	f0 e0       	ldi	r31, 0x00	; 0
      150:	80 81       	ld	r24, Z
-     152:	81 60       	ori	r24, 0x01	; 1
+     152:	83 60       	ori	r24, 0x03	; 3
      154:	80 83       	st	Z, r24
      156:	e8 9a       	sbi	0x1d, 0	; 29
      158:	08 95       	ret
