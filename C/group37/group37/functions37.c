@@ -31,8 +31,8 @@
 
  //Initializes the external interrupt INT0
  void int_init() {
-	EICRA |= (1<<ISC00)|(1<<ISC01);
-	EIMSK |= (1<<INT0);
+	EICRA |= (1<<ISC00)|(1<<ISC01); //Set to rising edge only
+	EIMSK |= (1<<INT0); //Enable External Interrupt 0
  }
  
  //Finds the decimal place in the float
@@ -53,14 +53,14 @@
  }
 
  //Calculates power from a voltage array and a current array
- float calcPower(float (*voltage)[20], float (*current)[20]) {
+ float calcPower(float (*voltage)[10], float (*current)[10]) {
 	float power = 0;
-	float newVoltage[39];
-	float newCurrent[39];
-	for (int i=0;i<39;i++) { //Creating 2 arrays of 39 elements for voltage and current
+	float newVoltage[19];
+	float newCurrent[19];
+	for (int i=0;i<19;i++) { //Creating 2 arrays of 19 elements for voltage and current
 		if (i%2 == 0) {
 			newVoltage[i] = (*voltage)[i/2];
-			if ((i == 0) || (i == 38)) {
+			if ((i == 0) || (i == 18)) {
 				newCurrent[i] = (*current)[i/2];
 			} else {
 				newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]); //For even numbered elements, current is approximated
@@ -70,32 +70,54 @@
 			newCurrent[i] = (*current)[(i-1)/2];
 		}
 	}
-	for (int i=0;i<39;i++) { //Sum the product of current and voltage for each time step
+	for (int i=0;i<19;i++) { //Sum the product of current and voltage for each time step
 		power = power + newVoltage[i]*newCurrent[i];
 	}
-	power = power / 39; //Divide by the number of elements
+	power = power / 19; //Divide by the number of elements
 	return power;
  }
 
  //Calculates RMS value of voltage
- float calcVoltageRMS(float (*voltage)[20]) {
+ float calcVoltageRMS(float (*voltage)[10]) {
 	float vRMS = 0;
-	for (int i=0;i<20;i++) {
-		float vSquared = pow((*voltage)[i], 2);
+	float newVoltage[19];
+	for (int i=0;i<19;i++) { //Creating array of 19 elements for voltage
+		if (i%2 == 0) {
+			newVoltage[i] = (*voltage)[i/2];
+		} else {
+			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
+		}
+	}
+
+	for (int i=0;i<19;i++) {
+		float vSquared = pow(newVoltage[i], 2);
 		vRMS += vSquared;
 	}
-	vRMS = vRMS / 20;
+	vRMS = vRMS / 19;
 	return sqrt(vRMS);
  }
 
  //Calculates RMS value of current
- float calcCurrentRMS(float (*current)[20]) {
+ float calcCurrentRMS(float (*current)[10]) {
 	 float iRMS = 0;
-	 for (int i=0;i<20;i++) {
-		 float iSquared = pow((*current)[i], 2);
+	 float newCurrent[19];
+	 for (int i=0;i<19;i++) { //Creating array of 19 elements for current
+		 if (i%2 == 0) {
+			 if ((i == 0) || (i == 18)) {
+				 newCurrent[i] = (*current)[i/2]; //Extremes
+			 } else {
+				 newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]); //For even numbered elements, current is approximated
+			 }
+		 } else {
+			 newCurrent[i] = (*current)[(i-1)/2];
+		 }
+	 }
+
+	 for (int i=0;i<19;i++) {
+		 float iSquared = pow(newCurrent[i], 2);
 		 iRMS += iSquared;
 	 }
-	 iRMS = iRMS / 20;
+	 iRMS = iRMS / 19;
 	 return sqrt(iRMS);
  }
 

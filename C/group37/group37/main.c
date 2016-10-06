@@ -32,9 +32,9 @@ int main(void) {
 		while (flag == 0);
 
 		//Reading from the ADC, calculating and converting
-		float voltageArray[20];
-		float currentArray[20];
-		for (int i=0;i<39;i++) {
+		float voltageArray[10];
+		float currentArray[10];
+		for (int i=0;i<19;i++) {
 			if (i%2 == 0) {
 				unsigned int adcValue = adc_read_voltage();
 				float adcVoltage = adc_calculation(adcValue);
@@ -69,9 +69,12 @@ int main(void) {
 			dataArray[i] = wololo(dataInt%10, i, hasDecimal);
 			dataInt = dataInt/10;
 		}
+		/*
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataArray[3] = 15; }
 		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 14; }
 		else if (displayCount%10 > 6) { dataArray[3] = 13; }
+		*/
+		dataArray[3] = 15;
 
 		//Transmits data until we get TCNT0 = 191 fifty times 
 		while (1) {
