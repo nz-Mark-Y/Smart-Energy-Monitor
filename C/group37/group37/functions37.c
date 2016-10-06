@@ -28,6 +28,12 @@
 	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
 	TCNT0 = 0; //Initialize timer0
  }
+
+ //Initializes the external interrupt INT0
+ void int_init() {
+	EICRA |= (1<<ISC00);
+	EIMSK |= (1<<INT0);
+ }
  
  //Finds the decimal place in the float
  unsigned int find_decimal(float data) {
@@ -73,12 +79,24 @@
 
  //Calculates RMS value of voltage
  float calcVoltageRMS(float (*voltage)[20]) {
-	return 69.6;
+	float vRMS = 0;
+	for (int i=0;i<20;i++) {
+		float vSquared = pow((*voltage)[i], 2);
+		vRMS += vSquared;
+	}
+	vRMS = vRMS / 20;
+	return sqrt(vRMS);
  }
 
  //Calculates RMS value of current
  float calcCurrentRMS(float (*current)[20]) {
-	 return 42.0;
+	 float iRMS = 0;
+	 for (int i=0;i<20;i++) {
+		 float iSquared = pow((*current)[i], 2);
+		 iRMS += iSquared;
+	 }
+	 iRMS = iRMS / 20;
+	 return sqrt(iRMS);
  }
 
  //Approximates a data value based on the two nearest data points

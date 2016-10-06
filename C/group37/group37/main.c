@@ -9,20 +9,28 @@
 #include "prototypes37.h"
 #define F_CPU 16000000UL
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
+volatile uint8_t flag = 0;
 
 int main(void) {
+	sei();
 	adc_init();
 	uart_init();	
 	timer0_init();
+	int_init();
 	uint32_t displayCount = 0;
 
 	while(1) {
 		uint8_t hasDecimal = 0;
 		uint8_t dataArray[4];
 		uint8_t index = 0;
-		
+		float dataFloat = 0;
+
+		flag = 0;
+		while (flag == 0);
+
 		//Reading from the ADC, calculating and converting
 		float voltageArray[20];
 		float currentArray[20];
@@ -39,11 +47,13 @@ int main(void) {
 				currentArray[(i-1)/2] = current;
 			}
 		}
-		float dataFloat = 0;
-
+		float power = calcPower(&voltageArray, &currentArray);
+		/*
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataFloat = calcPower(&voltageArray, &currentArray); } 
 		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataFloat = calcVoltageRMS(&voltageArray); }
 		else if (displayCount%10 > 6) { dataFloat = calcCurrentRMS(&currentArray); }
+		*/
+		dataFloat = power;
 
 		dataFloat = roundf(dataFloat * 100) / 100;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
@@ -87,4 +97,8 @@ int main(void) {
 		displayCount++;
 	}
 	return 0;
+}
+
+ISR (INT0_vect) {
+	flag = 1;
 }
