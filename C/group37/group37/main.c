@@ -21,16 +21,17 @@ int main(void) {
 	timer0_init();
 	int_init();
 	uint32_t displayCount = 0;
+	uint8_t currentFlag = 1;
 
 	while(1) {
 		uint8_t hasDecimal = 0;
 		uint8_t dataArray[4];
 		uint8_t index = 0;
 		float dataFloat = 0;
-
+		
 		flag = 0;
-		while (flag == 0);
-
+		while (flag == 0); //Wait for Zero Crossing Detector to signal a rising zero crossing
+		
 		//Reading from the ADC, calculating and converting
 		float voltageArray[10];
 		float currentArray[10];
@@ -41,19 +42,30 @@ int main(void) {
 				float voltage = voltage_real(adcVoltage, 0);
 				voltageArray[i/2] = voltage;
 			} else {
-				unsigned int adcValue = adc_read_current(0); // Regular Current
+				unsigned int adcValue = adc_read_current(currentFlag); // Regular Current
 				float adcCurrent = adc_calculation(adcValue);
-				float current = voltage_real(adcCurrent, 1); // Regular Current
+				float current = voltage_real(adcCurrent, currentFlag+1); // Regular Current
 				currentArray[(i-1)/2] = current;
 			}
 		}
-		float power = calcPower(&voltageArray, &currentArray);
-		/*
+		float test = calcCurrentRMS(&currentArray);
+		if (test > 0.21) {
+			if (currentFlag != 0) {
+				currentFlag = 0;
+				continue;
+			}
+		} else {
+			if (currentFlag != 1) {
+				currentFlag = 1;
+				continue;
+			}
+		}
+		
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataFloat = calcPower(&voltageArray, &currentArray); } 
-		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataFloat = calcVoltageRMS(&voltageArray); }
-		else if (displayCount%10 > 6) { dataFloat = calcCurrentRMS(&currentArray); }
-		*/
-		dataFloat = power;
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataFloat = dataFloat = calcCurrentRMS(&currentArray); }
+		else if (displayCount%10 > 6) { dataFloat = calcVoltageRMS(&voltageArray); }
+		
+		// if A > 0.21 use low gain
 
 		dataFloat = roundf(dataFloat * 100) / 100;
 		uint8_t decimalPos = find_decimal(dataFloat); //Find the decimal place
@@ -69,12 +81,10 @@ int main(void) {
 			dataArray[i] = wololo(dataInt%10, i, hasDecimal);
 			dataInt = dataInt/10;
 		}
-		/*
+		
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataArray[3] = 15; }
-		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 14; }
-		else if (displayCount%10 > 6) { dataArray[3] = 13; }
-		*/
-		dataArray[3] = 15;
+		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataArray[3] = 13; }
+		else if (displayCount%10 > 6) { dataArray[3] = 14; }
 
 		//Transmits data until we get TCNT0 = 191 fifty times 
 		while (1) {

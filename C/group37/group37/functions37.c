@@ -54,20 +54,28 @@
 
  //Calculates power from a voltage array and a current array
  float calcPower(float (*voltage)[10], float (*current)[10]) {
+	
+	float voltage2[10];
+	float current2[10];
+	for (int i=0;i<10;i++) {
+		voltage2[i] = (*voltage)[i];
+		current2[i] = (*current)[i];
+	}
+
 	float power = 0;
 	float newVoltage[19];
 	float newCurrent[19];
 	for (int i=0;i<19;i++) { //Creating 2 arrays of 19 elements for voltage and current
 		if (i%2 == 0) {
-			newVoltage[i] = (*voltage)[i/2];
+			newVoltage[i] = voltage2[i/2];
 			if ((i == 0) || (i == 18)) {
-				newCurrent[i] = (*current)[i/2];
+				newCurrent[i] = current2[i/2];
 			} else {
-				newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]); //For even numbered elements, current is approximated
+				newCurrent[i] = linearApproximate(current2[(i/2)], current2[(i/2)-1]); //For even numbered elements, current is approximated
 			}
 		} else {
-			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
-			newCurrent[i] = (*current)[(i-1)/2];
+			newVoltage[i] = linearApproximate(voltage2[(i+1)/2], voltage2[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
+			newCurrent[i] = current2[(i-1)/2];
 		}
 	}
 	for (int i=0;i<19;i++) { //Sum the product of current and voltage for each time step
@@ -79,13 +87,17 @@
 
  //Calculates RMS value of voltage
  float calcVoltageRMS(float (*voltage)[10]) {
+	float voltage2[10];
+	for (int i=0;i<10;i++) {
+		voltage2[i] = (*voltage)[i];
+	}
 	float vRMS = 0;
 	float newVoltage[19];
 	for (int i=0;i<19;i++) { //Creating array of 19 elements for voltage
 		if (i%2 == 0) {
-			newVoltage[i] = (*voltage)[i/2];
+			newVoltage[i] = voltage2[i/2];
 		} else {
-			newVoltage[i] = linearApproximate((*voltage)[(i+1)/2], (*voltage)[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
+			newVoltage[i] = linearApproximate(voltage2[(i+1)/2], voltage2[((i+1)/2)-1]); //For odd numbered elements, voltage is approximated
 		}
 	}
 
@@ -99,17 +111,21 @@
 
  //Calculates RMS value of current
  float calcCurrentRMS(float (*current)[10]) {
+	float current2[10];
+	for (int i=0;i<10;i++) {
+		current2[i] = (*current)[i];
+	}
 	 float iRMS = 0;
 	 float newCurrent[19];
 	 for (int i=0;i<19;i++) { //Creating array of 19 elements for current
 		 if (i%2 == 0) {
 			 if ((i == 0) || (i == 18)) {
-				 newCurrent[i] = (*current)[i/2]; //Extremes
+				 newCurrent[i] = current2[i/2]; //Extremes
 			 } else {
-				 newCurrent[i] = linearApproximate((*current)[((i+1)/2)-1], (*current)[((i+1)/2)-2]); //For even numbered elements, current is approximated
+				 newCurrent[i] = linearApproximate(current2[(i/2)], current2[(i/2)-1]); //For even numbered elements, current is approximated
 			 }
 		 } else {
-			 newCurrent[i] = (*current)[(i-1)/2];
+			 newCurrent[i] = current2[(i-1)/2];
 		 }
 	 }
 
@@ -149,12 +165,12 @@
  unsigned int adc_read_current(unsigned int highLow) {
 	if (highLow == 1) { //High gain current
 		ADMUX |= (1<<MUX0);
+		ADMUX |= (1<<MUX1);
+		ADMUX &= ~(1<<MUX2);
+	} else { //Low gain current
+		ADMUX |= (1<<MUX0);
 		ADMUX &= ~(1<<MUX1);
 		ADMUX |= (1<<MUX2);
-	} else { //Low gain current
-		ADMUX &= ~(1<<MUX0);
-		ADMUX &= ~(1<<MUX1);
-		ADMUX &= ~(1<<MUX2);
 	}
 	ADCSRA |= (1<<ADSC); //Start conversion
 	while ((ADCSRA & (1<<ADIF)) == 0); //Poll the ADIF bit
@@ -165,7 +181,7 @@
  //Converts an ADC integer into the actual voltage measured by the ADC pin
  float adc_calculation(unsigned int adcValue) {
 	float calculatedValue;
-	calculatedValue = ((float)adcValue / 1023) * 5;
+	calculatedValue = ((float)adcValue / 1023) * 5; //Digital value to analogue voltage measured
 	return calculatedValue; 
  }
  
@@ -174,11 +190,19 @@
  that the signal went through. Option 0 for voltage, 1 for regular current, 2 for high gain current
  */
  float voltage_real(float adcValue, unsigned int option) {
+	float output;
 	if (option == 0) {
-		return -(adcValue - 1.7) * 98;
+		output = -(adcValue - 1.7) + 0.27; //Remove offset voltage and then invert
+		output = output * 0.98; //Revert to value from before the op amp
 	} else if (option == 1) {
-		return -(adcValue - 1.63) / 5.7;
+		output = -(adcValue - 1.64);
+		output = output / 5;
+		output = output / 0.30; //Divide by R to get I
+		output = output * 1.08;
 	} else {
-		return -(adcValue - 1.64) / 32.93;
+		output = -(adcValue - 1.64);
+		output = output / 12.4;
+		output = output / 0.30; //Divide by R to get I
 	}
+	return output;
  }
