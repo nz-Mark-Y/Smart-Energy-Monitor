@@ -82,7 +82,7 @@
 		power = power + newVoltage[i]*newCurrent[i];
 	}
 	power = power / 19; //Divide by the number of elements
-	return power;
+	return power * 13.5;
  }
 
  //Calculates RMS value of voltage
@@ -106,7 +106,7 @@
 		vRMS += vSquared;
 	}
 	vRMS = vRMS / 19;
-	return sqrt(vRMS);
+	return (sqrt(vRMS)) * 13.5;
  }
 
  //Calculates RMS value of current
