@@ -28,7 +28,7 @@ class MyData:
 # Set up serial listening
 try:
     ser = serial.Serial(
-        port='COM7',\
+        port='COM6',\
         baudrate=9600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
