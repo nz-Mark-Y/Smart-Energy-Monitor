@@ -6,7 +6,7 @@ entity fsm is
 		Rx, B, S7, S15, clk: in std_logic; --inputs
 		reset : in std_logic;
 		Sen, Ben, Sr, Br, B_shift: out std_logic; --outputs
-		control_disp : out std_logic
+		control_disp : out std_logic --controls when output from the shift register is loaded into the seven seg decoder and the (decimal point & position) decoder via the parallel load disp_register
 		);
 		
 end fsm;
@@ -71,7 +71,7 @@ architecture behaviour of fsm is
 					
 				when start =>
 					if S7 = '1' then					
-						Sr <= '1'; 
+						Sr <= '1';	--once the s counter reaches 7 (the s counter is reset) it indicates that the middle of the transmission bit has been reached 
 						Br <= '1'; 	--reset the b counter					
 					else 					
 						Sen <= '1'; --increment the s counter						
@@ -79,11 +79,11 @@ architecture behaviour of fsm is
 					control_disp <= '0';
 								
 				when data =>					
-					if ((B = '1') AND (S15 = '1')) then					
+					if ((B = '1') AND (S15 = '1')) then	--When the sampling counter reaches  15 and the bit counter reaches 7, we know that 					
 						Sr <= '1';
 						B_shift <= '1';						
-					elsif ((B = '0') AND (S15 = '1')) then					
-						B_shift <= '1'; --enable shift register
+					elsif ((B = '0') AND (S15 = '1')) then	--When the sampling counter reaches  15 we know we are at the middle of the data bit				
+						B_shift <= '1'; --enable shift register so that we capture the Rx input
 						Sr <= '1';
 						Ben <= '1';	--Increment the bit counter						
 					else					
@@ -97,7 +97,7 @@ architecture behaviour of fsm is
 					else						
 						Sen <= '0';						
 					end if;
-					control_disp <= '1';
+					control_disp <= '1';	--Data loaded into seven seg only at stop state so as to prevent ghosting in the output
 			end case;
 		end process;
 end architecture;
