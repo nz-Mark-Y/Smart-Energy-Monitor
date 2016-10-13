@@ -40,7 +40,7 @@ class MyData:
 # Set up serial listening
 try:
     ser = serial.Serial(
-        port='COM6',\
+        port='COM7',\
         baudrate=9600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
@@ -85,30 +85,36 @@ def handleData(dataIn):
     previousEightDigits = [] # Eight digit array for sampling the input
     dataArray = [0,0,0,0] # The four integers which represent the data
     while True:
-        if (len(dataIn) >= 8):
-            eightDigits = dataIn[len(dataIn)-8:]
-            if eightDigits != previousEightDigits: # If we have a change
-                largestIndex = findLargestIndex(eightDigits)
-                if (largestIndex <= 4) and (eightDigits[largestIndex] not in eightDigits[largestIndex+1:largestIndex+4]):
-                    for i in range(largestIndex,largestIndex+4):
-                        dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
-                    value = ololow(dataArray) # Convert the data array back into the data sent
-                    if dataArray[3] == 15:
-                        unit = 'W'
-                        p.insert(0, value)
-                        p = p[0:300]
-                    elif dataArray[3] == 14:
-                        unit = 'V'
-                        v.insert(0, value)
-                        v = v[0:300]
-                    else:
-                        unit = 'A'
-                        a.insert(0, value)
-                        a = a[0:300]
-                    dataToSend = MyData(value, unit) # Create a MyData object to upload to firebase as JSON
-                    result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
-                    print(dataToSend.value, dataToSend.unit) # For debugging purposes
-                previousEightDigits = eightDigits
+        try:
+            if (len(dataIn) >= 8):
+                eightDigits = dataIn[len(dataIn)-8:]
+                if eightDigits != previousEightDigits: # If we have a change
+                    largestIndex = findLargestIndex(eightDigits)
+                    if (largestIndex <= 4) and (eightDigits[largestIndex] not in eightDigits[largestIndex+1:largestIndex+4]):
+                        for i in range(largestIndex,largestIndex+4):
+                            dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
+                        value = ololow(dataArray) # Convert the data array back into the data sent
+                        if dataArray[3] == 15:
+                            unit = 'W'
+                            p.insert(0, value)
+                            p = p[0:300]
+                        elif dataArray[3] == 14:
+                            unit = 'V'
+                            v.insert(0, value)
+                            v = v[0:300]
+                        else:
+                            if value > 10 or value < 0:
+                                continue
+                            unit = 'A'
+                            a.insert(0, value)
+                            a = a[0:300]
+                        dataToSend = MyData(value, unit) # Create a MyData object to upload to firebase as JSON
+                        result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
+                        print(dataToSend.value, dataToSend.unit) # For debugging purposes
+                    previousEightDigits = eightDigits
+        except:
+            print("Firebase Connection Failed")
+            continue
     return
 
 # Finds the largest integer in an array

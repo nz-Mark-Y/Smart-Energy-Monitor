@@ -79,10 +79,10 @@
 		}
 	}
 	for (int i=0;i<19;i++) { //Sum the product of current and voltage for each time step
-		power = power + newVoltage[i]*newCurrent[i];
+		power = power + newVoltage[i]*newCurrent[i] * 13.5;
 	}
 	power = power / 19; //Divide by the number of elements
-	return power * 13.5;
+	return power;
  }
 
  //Calculates RMS value of voltage

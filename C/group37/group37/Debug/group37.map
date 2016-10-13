@@ -750,10 +750,10 @@ END GROUP
  .debug_abbrev  0x00000000      0x1f8 functions37.o
  .debug_abbrev  0x000001f8      0x210 main.o
 
-.debug_line     0x00000000      0x816
+.debug_line     0x00000000      0x810
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x4f4 functions37.o
- .debug_line    0x000004f4      0x322 main.o
+ .debug_line    0x00000000      0x4ee functions37.o
+ .debug_line    0x000004ee      0x322 main.o
 
 .debug_frame    0x00000000      0x24c
  *(.debug_frame)
