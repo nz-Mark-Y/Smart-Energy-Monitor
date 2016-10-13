@@ -40,7 +40,7 @@ class MyData:
 # Set up serial listening
 try:
     ser = serial.Serial(
-        port='COM7',\
+        port='COM6',\
         baudrate=9600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
@@ -161,13 +161,15 @@ def realtimegraph():
         t = list(range(300))	#x-axis data points
 	
         l, = plt.plot(t, p, lw =3)	#plots a line on the axes with a linewidth of 3
-        
+        #ax = plt.gca()#
+        #ax.invert_yaxis()#
         #The initial graph on startup will be a Power vs Time graph
         global displaying
         displaying = 0;
         print("Graph displaying power")
         
-        ax.set_xlim(0, 26)			#The x and y limits for the Power vs Time graph is set
+        #The x and y limits for the Power vs Time graph is set
+        ax.set_xlim(25,0)
         ax.set_ylim(0, 10)
         txt = fig.text(0.4,0.95,' Power vs Time ',bbox=dict(facecolor='none', alpha=10,lw = 0),fontsize = 15)	#title of graph
         yaxistxt = fig.text(0.05,0.6,'Power (Watts)',bbox=dict(facecolor='none', alpha=10,lw = 0),fontsize = 15,rotation = 'vertical')	#y axis label of graph	
@@ -176,15 +178,15 @@ def realtimegraph():
         class Index(object):
             #The 5 below functions are used to adjust the x-axis limits depending on the button that is pressed
             def three_hundred(self, event):			
-                ax.set_xlim(0, 301)
+                ax.set_xlim(300,0)
             def two_hundred(self, event):			
-                ax.set_xlim(0, 201)
+                ax.set_xlim(200,0)
             def one_hundred(self, event):			
-                ax.set_xlim(0, 101)
+                ax.set_xlim(100,0)
             def fifty(self, event):			
-                ax.set_xlim(0, 51)
+                ax.set_xlim(50, 0)
             def twenty_five(self, event):			
-                ax.set_xlim(0, 26)
+                ax.set_xlim(25, 0)
             
             #The 3 below functions are used to switch between power, voltage or current graphs depending on which button is pressed
             def voltage(self,event):
