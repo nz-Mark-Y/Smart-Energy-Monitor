@@ -11,6 +11,7 @@
 void uart_init();
 void uart_transmit(uint8_t data);
 void timer0_init();
+void timer1_init();
 void int_init();
 unsigned int find_decimal(float data); 
 unsigned int wololo(uint8_t input, uint8_t position, uint8_t decimal);

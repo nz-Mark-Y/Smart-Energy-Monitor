@@ -23,10 +23,18 @@
 	UDR0 = data;
  }
 
- //Initializes the timer
+ //Initializes the timer0
  void timer0_init() {
 	TCCR0B |= (1<<CS00)|(1<<CS02); //Prescaler of 1024
 	TCNT0 = 0; //Initialize timer0
+ }
+
+ //Initializes the timer1
+ void timer1_init() {
+	OCR1A = 0x3D08;
+	TCCR1B |= (1 << WGM12); //Mode 4, CTC on OCR1A
+	TIMSK1 |= (1 << OCIE1A); //Set interrupt on compare match
+	TCCR1B |= (1 << CS12)|(1 << CS10); // set prescaler to 1024 and start the timer
  }
 
  //Initializes the external interrupt INT0

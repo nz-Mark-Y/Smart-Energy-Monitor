@@ -8,18 +8,22 @@
 #include <math.h>
 #include "prototypes37.h"
 #define F_CPU 16000000UL
+#define maxPower 10.00
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 volatile uint8_t flag = 0;
+volatile uint8_t ledFlag = 0;
 
 int main(void) {
 	sei();
 	adc_init();
 	uart_init();	
 	timer0_init();
+	timer1_init();
 	int_init();
+	DDRB |= (1<<5);
 	uint32_t displayCount = 0;
 	uint8_t currentFlag = 1;
 
@@ -61,7 +65,13 @@ int main(void) {
 			}
 		}
 		
-		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { dataFloat = calcPower(&voltageArray, &currentArray); } 
+		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { 
+			dataFloat = calcPower(&voltageArray, &currentArray); 
+			if (dataFloat >= maxPower*0.75) { OCR1A = 0x00; }
+			else if ((dataFloat < maxPower*0.75 ) && (dataFloat >= maxPower*0.5)) { OCR1A = 0x00; }
+			else if ((dataFloat < maxPower*0.5 ) && (dataFloat >= maxPower*0.25)) { OCR1A = 0x00; }
+			else { OCR1A = 0x00; }
+		} 
 		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { dataFloat = dataFloat = calcCurrentRMS(&currentArray); }
 		else if (displayCount%10 > 6) { dataFloat = calcVoltageRMS(&voltageArray); }
 		
@@ -114,4 +124,8 @@ int main(void) {
 
 ISR (INT0_vect) {
 	flag = 1;
+}
+
+ISR (TIMER1_COMPA_vect) {
+	PORTB ^= (1<<5);
 }
