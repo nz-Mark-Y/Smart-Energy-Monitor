@@ -4,18 +4,19 @@
  * Created: 10/088/2016 1:50:56 PM
  * Author: mark
  *
- * Sorry for the terrible variable names
+ * Apologies for the terrible variable and function names
  */ 
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <math.h>
 #define F_CPU 16000000UL
-#define maxPower 8.5
+#define maxPower 6.97
 #include <util/delay.h>
 #include "prototypes37.h"
 
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 volatile uint8_t flag = 0; // Flag for zero crossing detector
+volatile float oldVoltage = 0;
 
 int main(void) {
 	sei();
@@ -56,7 +57,7 @@ int main(void) {
 		float test = calcCurrentRMS(&currentArray);
 		if (test > 0.21) {
 			if (currentFlag != 0) {
-				currentFlag = 0; // Set the flag to low gain amplifier
+				currentFlag = 0; // Set the flag to regular amplifier
 				continue;
 			}
 		} else {
@@ -67,8 +68,7 @@ int main(void) {
 		}
 		
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { 
-			//dataFloat = calcPower(&voltageArray, &currentArray); // Display average power
-			dataFloat = calcVoltageRMS(&voltageArray); 
+			dataFloat = calcPower(&voltageArray, &currentArray); // Display average power
 			if (dataFloat >= maxPower*0.75) {
 				OCR1A = 0x001; // Flash constantly
 			} else if ((dataFloat < maxPower*0.75 ) && (dataFloat >= maxPower*0.5)) { 
@@ -80,10 +80,11 @@ int main(void) {
 			} 
 		} 
 		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { 
-			//dataFloat = calcCurrentPeak(&currentArray); // Display peak current
-			dataFloat = calcVoltageRMS(&voltageArray); 
+			dataFloat = calcCurrentRMS(&currentArray) * sqrt(2); // Display peak current
 		} else if (displayCount%10 > 6) { 
-			dataFloat = calcVoltageRMS(&voltageArray); // Display rms voltage
+			float dataFloatOne = calcVoltageRMS(&voltageArray); // Display rms voltage
+			dataFloat = (dataFloatOne + oldVoltage) / 2; 
+			oldVoltage = dataFloatOne;
 		} 
 
 		dataFloat = roundf(dataFloat * 100) / 100;
