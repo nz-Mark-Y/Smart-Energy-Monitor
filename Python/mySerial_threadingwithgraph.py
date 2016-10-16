@@ -85,30 +85,36 @@ def handleData(dataIn):
     previousEightDigits = [] # Eight digit array for sampling the input
     dataArray = [0,0,0,0] # The four integers which represent the data
     while True:
-        if (len(dataIn) >= 8):
-            eightDigits = dataIn[len(dataIn)-8:]
-            if eightDigits != previousEightDigits: # If we have a change
-                largestIndex = findLargestIndex(eightDigits)
-                if (largestIndex <= 4) and (eightDigits[largestIndex] not in eightDigits[largestIndex+1:largestIndex+4]):
-                    for i in range(largestIndex,largestIndex+4):
-                        dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
-                    value = ololow(dataArray) # Convert the data array back into the data sent
-                    if dataArray[3] == 15:
-                        unit = 'W'
-                        p.insert(0, value)
-                        p = p[0:300]
-                    elif dataArray[3] == 14:
-                        unit = 'V'
-                        v.insert(0, value)
-                        v = v[0:300]
-                    else:
-                        unit = 'A'
-                        a.insert(0, value)
-                        a = a[0:300]
-                    dataToSend = MyData(value, unit) # Create a MyData object to upload to firebase as JSON
-                    result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
-                    print(dataToSend.value, dataToSend.unit) # For debugging purposes
-                previousEightDigits = eightDigits
+        try:
+            if (len(dataIn) >= 8):
+                eightDigits = dataIn[len(dataIn)-8:]
+                if eightDigits != previousEightDigits: # If we have a change
+                    largestIndex = findLargestIndex(eightDigits)
+                    if (largestIndex <= 4) and (eightDigits[largestIndex] not in eightDigits[largestIndex+1:largestIndex+4]):
+                        for i in range(largestIndex,largestIndex+4):
+                            dataArray[i-largestIndex] = eightDigits[i] # Find the four digits of the data and store in data array
+                        value = ololow(dataArray) # Convert the data array back into the data sent
+                        if dataArray[3] == 15:
+                            unit = 'W'
+                            p.insert(0, value)
+                            p = p[0:300]
+                        elif dataArray[3] == 14:
+                            unit = 'V'
+                            v.insert(0, value)
+                            v = v[0:300]
+                        else:
+                            if value > 10 or value < 0:
+                                continue
+                            unit = 'A'
+                            a.insert(0, value)
+                            a = a[0:300]
+                        dataToSend = MyData(value, unit) # Create a MyData object to upload to firebase as JSON
+                        result = firebaseObject.post('/data', dataToSend.toJSON()) # Upload the JSON representation of the data object
+                        print(dataToSend.value, dataToSend.unit) # For debugging purposes
+                    previousEightDigits = eightDigits
+        except:
+            print("Firebase Connection Failed")
+            continue
     return
 
 # Finds the largest integer in an array
@@ -155,13 +161,15 @@ def realtimegraph():
         t = list(range(300))	#x-axis data points
 	
         l, = plt.plot(t, p, lw =3)	#plots a line on the axes with a linewidth of 3
-        
+        #ax = plt.gca()#
+        #ax.invert_yaxis()#
         #The initial graph on startup will be a Power vs Time graph
         global displaying
         displaying = 0;
         print("Graph displaying power")
         
-        ax.set_xlim(0, 26)			#The x and y limits for the Power vs Time graph is set
+        #The x and y limits for the Power vs Time graph is set
+        ax.set_xlim(25,0)
         ax.set_ylim(0, 10)
         txt = fig.text(0.4,0.95,' Power vs Time ',bbox=dict(facecolor='none', alpha=10,lw = 0),fontsize = 15)	#title of graph
         yaxistxt = fig.text(0.05,0.6,'Power (Watts)',bbox=dict(facecolor='none', alpha=10,lw = 0),fontsize = 15,rotation = 'vertical')	#y axis label of graph	
@@ -170,15 +178,15 @@ def realtimegraph():
         class Index(object):
             #The 5 below functions are used to adjust the x-axis limits depending on the button that is pressed
             def three_hundred(self, event):			
-                ax.set_xlim(0, 301)
+                ax.set_xlim(300,0)
             def two_hundred(self, event):			
-                ax.set_xlim(0, 201)
+                ax.set_xlim(200,0)
             def one_hundred(self, event):			
-                ax.set_xlim(0, 101)
+                ax.set_xlim(100,0)
             def fifty(self, event):			
-                ax.set_xlim(0, 51)
+                ax.set_xlim(50, 0)
             def twenty_five(self, event):			
-                ax.set_xlim(0, 26)
+                ax.set_xlim(25, 0)
             
             #The 3 below functions are used to switch between power, voltage or current graphs depending on which button is pressed
             def voltage(self,event):
