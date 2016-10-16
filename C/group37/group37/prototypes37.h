@@ -2,7 +2,7 @@
  * prototypes37.h
  *
  * Created: 10/08/2016 9:26:42 PM
- * Author: mark_
+ * Author: mark
  */
 #include <avr/io.h> 
 #ifndef PROTOTYPES37_H_

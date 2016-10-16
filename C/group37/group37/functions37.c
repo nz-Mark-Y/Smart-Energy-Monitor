@@ -2,7 +2,7 @@
  * functions37.c
  *
  * Created: 10/08/2016 9:26:53 PM
- * Author: mark_ ft adil
+ * Author: mark ft adil
  */ 
  #include <avr/io.h>
  #include "prototypes37.h"
@@ -161,8 +161,8 @@
  float calcCurrentPeak(float (*current)[10]) {
 	float largest = (*current)[0];
 	for (unsigned int i=1;i<10;i++) {
-		if (current[i] > largest) {
-			largest = current[i];
+		if ((*current)[i] > largest) {
+			largest = (*current)[i];
 		}
 	}
 	return largest;

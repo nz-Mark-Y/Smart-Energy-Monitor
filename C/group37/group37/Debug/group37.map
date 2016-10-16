@@ -80,6 +80,8 @@ Discarded input sections
  .bss           0x00000000        0x0 functions37.o
  .text.calcPower
                 0x00000000      0x296 functions37.o
+ .text.calcCurrentPeak
+                0x00000000       0x68 functions37.o
  .text.linearApproximate
                 0x00000000       0x12 functions37.o
  .text          0x00000000        0x0 main.o
@@ -734,47 +736,47 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xc8
+.debug_aranges  0x00000000       0xd0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x98 functions37.o
+                0x00000000       0xa0 functions37.o
  .debug_aranges
-                0x00000098       0x30 main.o
+                0x000000a0       0x30 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xc16
+.debug_info     0x00000000      0xc6a
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x67a functions37.o
- .debug_info    0x0000067a      0x59c main.o
+ .debug_info    0x00000000      0x6ce functions37.o
+ .debug_info    0x000006ce      0x59c main.o
 
 .debug_abbrev   0x00000000      0x408
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x1f8 functions37.o
  .debug_abbrev  0x000001f8      0x210 main.o
 
-.debug_line     0x00000000      0x8ab
+.debug_line     0x00000000      0x89c
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x516 functions37.o
- .debug_line    0x00000516      0x395 main.o
+ .debug_line    0x00000000      0x532 functions37.o
+ .debug_line    0x00000532      0x36a main.o
 
-.debug_frame    0x00000000      0x280
+.debug_frame    0x00000000      0x2cc
  *(.debug_frame)
- .debug_frame   0x00000000      0x208 functions37.o
- .debug_frame   0x00000208       0x78 main.o
+ .debug_frame   0x00000000      0x254 functions37.o
+ .debug_frame   0x00000254       0x78 main.o
 
-.debug_str      0x00000000      0x3e1
+.debug_str      0x00000000      0x3f9
  *(.debug_str)
- .debug_str     0x00000000      0x2dc functions37.o
-                                0x328 (size before relaxing)
- .debug_str     0x000002dc      0x105 main.o
+ .debug_str     0x00000000      0x2f4 functions37.o
+                                0x340 (size before relaxing)
+ .debug_str     0x000002f4      0x105 main.o
                                 0x34f (size before relaxing)
 
-.debug_loc      0x00000000      0xfe2
+.debug_loc      0x00000000     0x110e
  *(.debug_loc)
- .debug_loc     0x00000000      0xb34 functions37.o
- .debug_loc     0x00000b34      0x4ae main.o
+ .debug_loc     0x00000000      0xc60 functions37.o
+ .debug_loc     0x00000c60      0x4ae main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -794,10 +796,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x128
+.debug_ranges   0x00000000      0x130
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x88 functions37.o
- .debug_ranges  0x00000088       0xa0 main.o
+ .debug_ranges  0x00000000       0x90 functions37.o
+ .debug_ranges  0x00000090       0xa0 main.o
 
 .debug_macro
  *(.debug_macro)

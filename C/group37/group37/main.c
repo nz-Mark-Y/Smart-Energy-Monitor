@@ -2,15 +2,17 @@
  * group37.c
  *
  * Created: 10/088/2016 1:50:56 PM
- * Author: mark_
+ * Author: mark
+ *
+ * Sorry for the terrible variable names
  */ 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <math.h>
-#include "prototypes37.h"
 #define F_CPU 16000000UL
 #define maxPower 8.5
 #include <util/delay.h>
-#include <avr/interrupt.h>
+#include "prototypes37.h"
 
 volatile uint8_t counter = 0; //Counter for the number of times the TCNT0 compares correctly
 volatile uint8_t flag = 0; // Flag for zero crossing detector
