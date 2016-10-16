@@ -31,7 +31,7 @@
 
  //Initializes the timer1
  void timer1_init() {
-	OCR1A = 0x3D08;
+	OCR1A = 0x00;
 	TCCR1B |= (1 << WGM12); //Mode 4, CTC on OCR1A
 	TIMSK1 |= (1 << OCIE1A); //Set interrupt on compare match
 	TCCR1B |= (1 << CS12)|(1 << CS10); // set prescaler to 1024 and start the timer
@@ -45,18 +45,30 @@
  
  //Finds the decimal place in the float
  unsigned int find_decimal(float data) {
-	if (data < 10) { return 0; }
-	if (data < 100) { return 1; }
+	if (data < 10) { 
+		return 0; 
+	}
+	if (data < 100) { 
+		return 1; 
+	}
 	return 2;
  }
 
  //Converts our parameters into the value to send
  unsigned int wololo(uint8_t input, uint8_t position, uint8_t decimal) {
 	unsigned int output = input;
-	if (decimal == 1) { output += 16; }
-	if (position == 0) { output += 96; }
-	if (position == 1) { output += 64; }
-	if (position == 2) { output += 32; }
+	if (decimal == 1) { 
+		output += 16; 
+	}
+	if (position == 0) { 
+		output += 96; 
+	}
+	if (position == 1) { 
+		output += 64; 
+	}
+	if (position == 2) { 
+		output += 32; 
+	}
 	return output;
  }
 
@@ -143,6 +155,17 @@
 	 }
 	 iRMS = iRMS / 19;
 	 return sqrt(iRMS);
+ }
+
+ //Calculates peak current
+ float calcCurrentPeak(float (*current)[10]) {
+	float largest = (*current)[0];
+	for (unsigned int i=1;i<10;i++) {
+		if (current[i] > largest) {
+			largest = current[i];
+		}
+	}
+	return largest;
  }
 
  //Approximates a data value based on the two nearest data points

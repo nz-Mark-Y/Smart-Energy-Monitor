@@ -18,6 +18,7 @@ unsigned int wololo(uint8_t input, uint8_t position, uint8_t decimal);
 float calcPower(float (*voltage)[10], float (*current)[10]);
 float calcVoltageRMS(float (*voltage)[10]);
 float calcCurrentRMS(float (*current)[10]); 
+float calcCurrentPeak(float (*current)[10]);
 float linearApproximate(float higher, float lower);
 void adc_init();
 unsigned int adc_read_voltage();
