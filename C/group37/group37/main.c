@@ -55,12 +55,12 @@ int main(void) {
 			}
 		}
 		float test = calcCurrentRMS(&currentArray);
-		if (test > 0.21) {
+		if (test > 0.22) {
 			if (currentFlag != 0) {
 				currentFlag = 0; // Set the flag to regular amplifier
 				continue;
 			}
-		} else {
+		} else if (test < 0.2) { // Hysteresis
 			if (currentFlag != 1) {
 				currentFlag = 1; // Set the flag to high gain amplifier
 				continue;
@@ -68,7 +68,7 @@ int main(void) {
 		}
 		
 		if ((displayCount%10 < 4) && (displayCount%10 >= 0)) { 
-			dataFloat = calcPower(&voltageArray, &currentArray); // Display average power
+			dataFloat = calcPower(&voltageArray, &currentArray) * 1.29; // Display average power
 			if (dataFloat >= maxPower*0.75) {
 				OCR1A = 0x001; // Flash constantly
 			} else if ((dataFloat < maxPower*0.75 ) && (dataFloat >= maxPower*0.5)) { 
@@ -81,8 +81,11 @@ int main(void) {
 		} 
 		else if ((displayCount%10 < 7) && (displayCount%10 > 3)) { 
 			dataFloat = calcCurrentRMS(&currentArray) * sqrt(2); // Display peak current
+			if (currentFlag == 0) {
+				dataFloat = dataFloat * 1.09;
+			}
 		} else if (displayCount%10 > 6) { 
-			float dataFloatOne = calcVoltageRMS(&voltageArray); // Display rms voltage
+			float dataFloatOne = calcVoltageRMS(&voltageArray) * 1.11; // Display rms voltage
 			dataFloat = (dataFloatOne + oldVoltage) / 2; 
 			oldVoltage = dataFloatOne;
 		} 

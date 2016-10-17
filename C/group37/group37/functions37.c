@@ -226,7 +226,6 @@
 		output = adcValue - 1.7;
 		output = (-1 * output) + 0.27; // Remove offset voltage and then invert
 		output = output / 1.03; // Revert to value from before the op amp
-		output = output * 1.0684;
 	} else if (option == 1) {
 		output = -(adcValue - 1.64);
 		output = output / 5.65;
