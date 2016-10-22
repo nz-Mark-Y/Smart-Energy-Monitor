@@ -1,2 +1,0 @@
-1-3: the way we had it, low-load, high-load and middle-load
-4-6: the way they had it, low-load, high-load and middle-load
